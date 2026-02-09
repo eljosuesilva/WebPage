@@ -1,0 +1,25 @@
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { MapBackground } from "@/components/map/MapBackground";
+
+export default function OurMissionPage() {
+    return (
+        <main className="relative min-h-screen flex flex-col">
+            <Navbar />
+            <MapBackground initialChapter="mission" />
+
+            <div className="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl  flex-grow w-full">
+                <div className="max-w-3xl">
+                    <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+                        Our Mission
+                    </h1>
+                    <p className="text-xl text-gray-200 leading-relaxed mb-8">
+                        We are mapping the future of our planet with detailed, AI-powered spatial intelligence.
+                    </p>
+                </div>
+            </div>
+
+            <Footer variant="compact" />
+        </main>
+    );
+}
