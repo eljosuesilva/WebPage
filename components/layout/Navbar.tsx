@@ -30,7 +30,7 @@ const ScrambleText = ({
         setIsAnimating(true);
         let iteration = 0;
         const totalIterations = text.length;
-        const intervalTime = 40;
+        const intervalTime = 20;
 
         const interval = setInterval(() => {
             setDisplayText(prev =>
@@ -46,7 +46,7 @@ const ScrambleText = ({
                     .join("")
             );
 
-            iteration += 1/3;
+            iteration += 1;
 
             if (iteration >= totalIterations) {
                 clearInterval(interval);
@@ -86,61 +86,61 @@ export const Navbar = () => {
 
     return (
         <nav
-            className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100"
+            className="fixed top-0 left-0 right-0 z-50 bg-white"
             onMouseEnter={() => setIsMenuOpen(true)}
             onMouseLeave={() => setIsMenuOpen(false)}
         >
             {/* Backdrop Blur Effect */}
             <div
-                className={`fixed top-20 left-0 right-0 bottom-0 bg-black/10 backdrop-blur-sm z-[-1] pointer-events-none transition-opacity duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                className={`fixed top-16 left-0 right-0 bottom-0 bg-black/10 backdrop-blur-sm z-[-1] pointer-events-none transition-opacity duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                     isMenuOpen ? "opacity-100" : "opacity-0"
                 }`}
             />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-50 bg-white">
-                <div className="flex items-center h-20">
+            <div className="max-w-5xl mx-auto px-4 relative z-50">
+                <div className="flex items-center justify-between h-16">
                     {/* Logo */}
-                    <div className="flex items-center mr-auto">
-                        <Link href="/" className="flex items-center gap-2">
-                            <div className="relative w-12 h-12">
-                                <Image
-                                    src="/logobueno.png"
-                                    alt="Columbus Logo"
-                                    fill
-                                    className="object-contain"
-                                    priority
-                                />
-                            </div>
-                            <span className="text-2xl font-bold text-primary tracking-tight">Columbus Earth</span>
-                        </Link>
-                    </div>
+                    <Link href="/" className="flex items-center gap-2">
+                        <div className="relative w-8 h-8">
+                            <Image
+                                src="/logobueno.png"
+                                alt="Columbus Logo"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
+                        </div>
+                        <span className="text-xl font-semibold text-[#0a1628] tracking-tight">Columbus Earth</span>
+                    </Link>
 
-                    {/* Navigation Links */}
-                    <div className="hidden md:flex items-center space-x-8 mr-8">
-                        <Link href="#" className="text-gray-900 font-bold hover:text-primary transition-colors">
-                            Product
-                        </Link>
-                        <Link href="#" className="text-gray-900 font-bold hover:text-primary transition-colors">
-                            Use Cases
-                        </Link>
-                        <Link href="#" className="text-gray-900 font-bold hover:text-primary transition-colors">
-                            Technology
-                        </Link>
-                    </div>
+                    {/* Navigation Links + Buttons */}
+                    <div className="flex items-center gap-8">
+                        <div className="hidden md:flex items-center gap-8">
+                            <Link href="#" className="text-[#0a1628] text-base font-semibold hover:text-gray-600 transition-colors">
+                                Product
+                            </Link>
+                            <Link href="#" className="text-[#0a1628] text-base font-semibold hover:text-gray-600 transition-colors">
+                                Use Cases
+                            </Link>
+                            <Link href="#" className="text-[#0a1628] text-base font-semibold hover:text-gray-600 transition-colors">
+                                Technology
+                            </Link>
+                        </div>
 
-                    <div className="flex items-center gap-4">
-                        <Button variant="primary" className="bg-black text-primary border border-gray-200 hover:bg-gray-50 rounded-md px-6 font-medium">
-                            Start Now
-                        </Button>
-                        <button
-                            className="p-2 hover:bg-gray-100 rounded-md transition-colors"
-                        >
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 12H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M3 6H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </button>
+                        <div className="flex items-center gap-2">
+                            <button className="bg-white text-[#0a1628] hover:bg-gray-50 px-4 py-1.5 text-base font-semibold transition-colors border border-[#0a1628]">
+                                Start Now
+                            </button>
+                            <button
+                                className="w-9 h-9 flex items-center justify-center hover:bg-gray-50 transition-colors border border-[#0a1628]"
+                            >
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 12H21" stroke="#0a1628" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M3 6H21" stroke="#0a1628" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M3 18H21" stroke="#0a1628" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
