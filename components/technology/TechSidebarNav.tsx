@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import styles from "./technology.module.css";
 import {
   OBSERVED_SECTION_IDS,
+  SECTION_TO_NAV_ID,
   SIDEBAR_HIDDEN_ON,
   TECHNOLOGY_NAV_ITEMS,
 } from "./redesign/content";
@@ -15,35 +16,56 @@ export function TechSidebarNav() {
   const [activeId, setActiveId] = useState<TechnologySectionId>("index");
 
   useEffect(() => {
+    const pageBody = document.querySelector<HTMLElement>(`.${styles.pageBody}`);
+    if (!pageBody) return;
+
     const sections = OBSERVED_SECTION_IDS.map((id) => document.getElementById(id)).filter(
       (node): node is HTMLElement => Boolean(node)
     );
 
     if (sections.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    const updateActiveByPosition = () => {
+      const rootRect = pageBody.getBoundingClientRect();
+      const probeY = rootRect.top + rootRect.height * 0.42;
 
-        if (!visible?.target?.id) return;
+      let containing: HTMLElement | null = null;
+      let nearest = sections[0];
+      let nearestDistance = Number.POSITIVE_INFINITY;
 
-        setActiveId(visible.target.id as TechnologySectionId);
-      },
-      {
-        threshold: [0.25, 0.45, 0.65],
-        rootMargin: "-18% 0px -48% 0px",
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= probeY && rect.bottom >= probeY) {
+          containing = section;
+          break;
+        }
+
+        const center = rect.top + rect.height / 2;
+        const distance = Math.abs(center - probeY);
+
+        if (distance < nearestDistance) {
+          nearest = section;
+          nearestDistance = distance;
+        }
       }
-    );
 
-    for (const section of sections) {
-      observer.observe(section);
-    }
+      const nextId = (containing ?? nearest).id as TechnologySectionId;
+      setActiveId(nextId);
+    };
 
-    return () => observer.disconnect();
+    updateActiveByPosition();
+
+    pageBody.addEventListener("scroll", updateActiveByPosition, { passive: true });
+    window.addEventListener("resize", updateActiveByPosition);
+
+    return () => {
+      pageBody.removeEventListener("scroll", updateActiveByPosition);
+      window.removeEventListener("resize", updateActiveByPosition);
+    };
   }, []);
 
+  const activeNavId = SECTION_TO_NAV_ID[activeId];
   const isHidden = SIDEBAR_HIDDEN_ON.has(activeId);
 
   return (
@@ -55,7 +77,7 @@ export function TechSidebarNav() {
       <nav>
         <ul className={styles.sidebarList}>
           {TECHNOLOGY_NAV_ITEMS.map((item) => {
-            const isActive = activeId === item.id;
+            const isActive = activeNavId === item.id;
 
             return (
               <li key={item.id}>

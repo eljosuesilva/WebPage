@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 function MailIcon({ className = "" }: { className?: string }) {
@@ -50,7 +51,7 @@ function LinkedInIcon({ className = "" }: { className?: string }) {
 
 export function TechFooter() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/35">
+    <footer className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f1f59] via-[#13295f] to-[#48a7e8]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_72%,rgba(31,57,134,0.65),transparent_40%),radial-gradient(circle_at_55%_44%,rgba(39,64,153,0.5),transparent_45%),radial-gradient(circle_at_84%_14%,rgba(119,199,255,0.35),transparent_45%)]" />
 
@@ -58,8 +59,14 @@ export function TechFooter() {
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-4">
-              <div className="grid h-16 w-16 place-items-center rounded-full border border-white/70">
-                <div className="h-8 w-8 rounded-full border border-white/80" />
+              <div className="relative h-16 w-16">
+                <Image
+                  src="/logobueno.png"
+                  alt="Columbus Earth logo"
+                  fill
+                  sizes="64px"
+                  className="object-contain brightness-0 invert"
+                />
               </div>
               <h2 className="text-5xl font-semibold tracking-tight sm:text-6xl">Columbus Earth</h2>
             </div>

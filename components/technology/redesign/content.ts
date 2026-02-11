@@ -30,6 +30,22 @@ export const OBSERVED_SECTION_IDS: TechnologySectionId[] = [
   "hiring-humans",
 ];
 
+export const SECTION_TO_NAV_ID: Record<TechnologySectionId, TechnologySectionId> = {
+  index: "index",
+  "lgm-vs-llm": "lgm-vs-llm",
+  "data-collection": "data-collection",
+  fusing: "data-collection",
+  "grid-intro": "data-collection",
+  "grid-full": "data-collection",
+  "grid-article": "data-collection",
+  "core-reasoning": "core-reasoning",
+  genlayers: "core-reasoning",
+  "research-blog": "research-blog",
+  "dynamic-layers": "research-blog",
+  careers: "careers",
+  "hiring-humans": "careers",
+};
+
 export const SIDEBAR_HIDDEN_ON = new Set<TechnologySectionId>([
   "grid-full",
   "genlayers",

@@ -478,7 +478,7 @@ export function TechnologySections() {
         </div>
       </Slide>
 
-      <Slide id="careers">
+      <Slide id="careers" className={styles.noSnapSection}>
         <div className={styles.slideFrame}>
           <RevealOnView className={styles.careersSlide}>
             <div className={styles.careersHead}>
@@ -517,7 +517,10 @@ export function TechnologySections() {
         </div>
       </Slide>
 
-      <Slide id="hiring-humans" className={[styles.hiringSection, styles.fullBleedSection].join(" ")}>
+      <Slide
+        id="hiring-humans"
+        className={[styles.hiringSection, styles.fullBleedSection, styles.noSnapSection].join(" ")}
+      >
         <div className={styles.slideFrame}>
           <div className={styles.hiringArcWrap}>
             <div className={styles.hiringArcHighlight} aria-hidden="true" />
