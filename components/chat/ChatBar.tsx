@@ -110,27 +110,6 @@ export const ChatBar = ({ forcedInput, variant = "fixed" }: { forcedInput?: stri
                     </svg>
                 </div>
 
-                <form onSubmit={handleSubmit} className="flex-1 flex items-center">
-                    <input
-                        type="text"
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        placeholder="Ask Columbus about us..."
-                        className="w-full bg-transparent border-none focus:ring-0 text-gray-800 placeholder:text-gray-500 text-lg py-2 px-2 outline-none"
-                        disabled={isLoading}
-                    />
-                </form>
-
-                <Button
-                    type="submit"
-                    variant="primary"
-                    size="sm"
-                    className="rounded-full px-6 bg-primary text-white hover:bg-primary/90"
-                    disabled={isLoading || !input.trim()}
-                    onClick={(e) => handleSubmit(e)}
-                >
-                    {isLoading ? "Thinking..." : "Ask"}
-                </Button>
             </div>
         </div>
     );

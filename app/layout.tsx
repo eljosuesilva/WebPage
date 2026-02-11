@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { Inter, Shanti } from "next/font/google";
 import "./globals.css";
-import { MapBackground } from "@/components/map/MapBackground";
 
-const inter = Inter({ subsets: ["latin"] });
-const shanti = Shanti({ weight: "400", subsets: ["latin"] });
+import { shanti } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Columbus",

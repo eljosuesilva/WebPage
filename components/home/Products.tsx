@@ -62,7 +62,7 @@ export const Products = () => {
 
                             <h3 className="text-3xl font-bold text-white mb-4">MapsGPT</h3>
                             <p className="text-gray-400 text-lg mb-8 max-w-sm">
-                                Generative AI travel & discovery. Ask natural questions like "Where are the best hidden jazz bars?" and get curated spatial itineraries.
+                                Generative AI travel & discovery. Ask natural questions like &quot;Where are the best hidden jazz bars?&quot; and get curated spatial itineraries.
                             </p>
 
                             <div className="mt-auto">
@@ -111,11 +111,18 @@ export const Products = () => {
                             <div className="space-y-1 opacity-80">
                                 <div className="text-purple-400">POST <span className="text-white">/v1/enrich/place</span></div>
                                 <div className="text-gray-500">{"{"}</div>
-                                <div className="pl-4"><span className="text-blue-400">"name"</span>: <span className="text-green-400">"Zara Serrano"</span>,</div>
-                                <div className="pl-4"><span className="text-blue-400">"context"</span>: [<span className="text-green-400">"traffic"</span>, <span className="text-green-400">"sentiment"</span>]</div>
+                                <div className="pl-4">
+                                    <span className="text-blue-400">&quot;name&quot;</span>:{" "}
+                                    <span className="text-green-400">&quot;Zara Serrano&quot;</span>,
+                                </div>
+                                <div className="pl-4">
+                                    <span className="text-blue-400">&quot;context&quot;</span>: [
+                                    <span className="text-green-400">&quot;traffic&quot;</span>,{" "}
+                                    <span className="text-green-400">&quot;sentiment&quot;</span>]
+                                </div>
                                 <div className="text-gray-500">{"}"}</div>
-                                <div className="mt-2 text-gray-500">// Response (20ms)</div>
-                                <div className="text-yellow-400">"score": 98.4</div>
+                                <div className="mt-2 text-gray-500">{"// Response (20ms)"}</div>
+                                <div className="text-yellow-400">&quot;score&quot;: 98.4</div>
                             </div>
                         </div>
 

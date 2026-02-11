@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { MapBackground, MapMarker } from "@/components/map/MapBackground";
 import { ChatBar } from "@/components/chat/ChatBar";
@@ -36,6 +36,11 @@ const FILTERS = [
     "Performance", "Promotions", "Customer Sentiment", "Foot Traffic", "Demographics"
 ];
 
+type MockPanel = {
+    title: string;
+    content: ReactNode;
+};
+
 // Mock Data Generator Function - Strictly Sector Based
 const getMockData = (filter: string, competitorName: string | null, sector: Sector) => {
     const name = competitorName || "Sector Average";
@@ -44,7 +49,7 @@ const getMockData = (filter: string, competitorName: string | null, sector: Sect
     // Helper to allow random variation based on name
     const num = (base: number, range: number) => base + (offset % range);
 
-    const data: Record<string, any> = {
+    const data: Record<string, MockPanel> = {
         "Performance": {
             title: `Performance: ${name}`,
             content: (

@@ -1,0 +1,1367 @@
+.page {
+  min-height: 100vh;
+  background-color: #f7f7f6;
+  color: #0a1628;
+}
+
+.dotGrid {
+  background-image: radial-gradient(circle, rgba(226, 223, 208, 0.95) 1.05px, transparent 1.05px);
+  background-repeat: repeat;
+  background-size: 16px 16px;
+  background-position: 0 0;
+}
+
+.pageBody {
+  padding-top: 84px;
+}
+
+.pageShell {
+  width: min(1860px, 100%);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3.4vw, 56px);
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: clamp(22px, 3vw, 56px);
+}
+
+.sidebarColumn {
+  min-height: 100%;
+}
+
+.contentColumn {
+  min-width: 0;
+}
+
+.section {
+  scroll-margin-top: 112px;
+  position: relative;
+}
+
+.standardContainer {
+  width: min(1160px, 100%);
+  padding: clamp(2.4rem, 4vw, 4rem) 0;
+}
+
+.standardContainerWide {
+  width: min(1280px, 100%);
+  padding: clamp(2.4rem, 4vw, 4rem) 0;
+}
+
+.fullBleed {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.kicker {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 2.8rem);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  margin: 22px 0 0;
+  max-width: 900px;
+  font-size: clamp(2.2rem, 4.3vw, 4.1rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.sectionTitleNarrow {
+  margin: 78px 0 0;
+  max-width: 760px;
+  font-size: clamp(2.2rem, 4.3vw, 4.1rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.verticalLineOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to right, rgba(255, 178, 178, 0.42) 1px, transparent 1px);
+  background-size: 140px 100%;
+  opacity: 0.65;
+}
+
+.indexSection {
+  min-height: calc(100vh - 84px);
+  display: flex;
+  align-items: flex-start;
+  padding-top: clamp(2rem, 5vw, 5.5rem);
+}
+
+.heroLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(420px, 0.95fr);
+  align-items: start;
+  gap: clamp(1.8rem, 3vw, 4rem);
+}
+
+.heroCopy {
+  max-width: 820px;
+  padding-top: clamp(0.6rem, 2vw, 1.3rem);
+}
+
+.heroCopy h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 4.9vw, 5.1rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.heroCopy p {
+  margin: 24px 0 0;
+  max-width: 760px;
+  font-size: clamp(1.5rem, 2.4vw, 2.6rem);
+  line-height: 1.28;
+  color: rgba(0, 0, 0, 0.84);
+}
+
+.pipelineShell {
+  justify-self: end;
+  width: min(540px, 100%);
+  display: grid;
+  justify-items: center;
+}
+
+.pipelineCardWide,
+.pipelineCardSmall,
+.pipelineCenterCard,
+.pipelineFooter {
+  border: 1px solid rgba(10, 22, 40, 0.18);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(3px);
+}
+
+.pipelineCardWide {
+  width: 100%;
+  border-radius: 10px;
+  padding: 14px 16px 20px;
+}
+
+.pipelineLabel {
+  text-align: center;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.66);
+}
+
+.pipelineTiles {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 11px;
+}
+
+.pipelineTile {
+  width: 48px;
+  height: 43px;
+  border-radius: 8px 8px 3px 3px;
+  background: linear-gradient(180deg, #0f1f58 0%, #111f56 100%);
+  clip-path: polygon(13% 0%, 87% 0%, 100% 28%, 100% 100%, 0% 100%, 0% 28%);
+}
+
+.pipelineDashedTop,
+.pipelineDashedBottom {
+  width: 100%;
+}
+
+.pipelineDashedTop {
+  margin-top: 4px;
+  height: 116px;
+}
+
+.pipelineDashedBottom {
+  margin-top: 2px;
+  height: 88px;
+}
+
+.dashedPathRed,
+.dashedPathGray {
+  fill: none;
+  stroke-dasharray: 8 8;
+  stroke-dashoffset: 0;
+  animation: dashFlow 18s linear infinite;
+}
+
+.dashedPathRed {
+  stroke: rgba(255, 138, 138, 0.74);
+  stroke-width: 1.45;
+}
+
+.dashedPathGray {
+  stroke: rgba(44, 54, 73, 0.58);
+  stroke-width: 1.5;
+}
+
+.pipelineCenterCard {
+  width: 200px;
+  border-radius: 10px;
+  padding: 13px 18px;
+  display: grid;
+  justify-items: center;
+  gap: 11px;
+}
+
+.pipelineNode {
+  width: 55px;
+  height: 55px;
+  border-radius: 16px;
+  background: radial-gradient(circle at 35% 25%, #5f90df 0%, #2f6fd6 60%, #2656a9 100%);
+  box-shadow: 0 10px 30px rgba(35, 81, 164, 0.28);
+}
+
+.pipelineBottomGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.pipelineCardSmall {
+  border-radius: 10px;
+  padding: 12px 11px;
+  min-height: 120px;
+}
+
+.pipelineBlob {
+  margin: 12px auto 0;
+  width: 58px;
+  height: 52px;
+  border-radius: 60% 40% 52% 48% / 47% 54% 46% 53%;
+  background: radial-gradient(circle at 30% 25%, #c9d6f0 0%, #7998c9 58%, #3f5f99 100%);
+}
+
+.pipelineGridIcon {
+  margin: 12px auto 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  border: 1px solid rgba(63, 95, 153, 0.4);
+  background:
+    linear-gradient(to right, rgba(47, 111, 214, 0.32) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(47, 111, 214, 0.32) 1px, transparent 1px),
+    rgba(190, 217, 249, 0.56);
+  background-size: 12px 100%, 100% 12px, auto;
+}
+
+.pipelineFooter {
+  margin-top: 12px;
+  border-radius: 12px;
+  padding: 10px 16px;
+  min-width: 320px;
+  text-align: center;
+  font-size: 1.06rem;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.bluePanelSection {
+  margin-top: clamp(2rem, 5vw, 5.5rem);
+  background: linear-gradient(135deg, #eef2ff 0%, #c8ddf2 48%, #97c7eb 100%);
+  border-radius: 0;
+}
+
+.lgmTitle {
+  margin: 0;
+  max-width: 1020px;
+  font-size: clamp(2rem, 3.6vw, 3.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.lgmLead {
+  margin: clamp(2.1rem, 4vw, 4rem) 0 0;
+  max-width: 560px;
+  font-size: clamp(1.75rem, 2.3vw, 2.65rem);
+  line-height: 1.24;
+  font-weight: 600;
+}
+
+.lgmTagline {
+  margin-top: clamp(2.5rem, 5vw, 5rem);
+  text-align: right;
+  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  font-weight: 600;
+}
+
+.lgmColumns {
+  margin-top: clamp(1.8rem, 3vw, 3rem);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.3rem, 2.2vw, 2.4rem);
+}
+
+.lgmColumn h3 {
+  margin: 0;
+  font-size: clamp(2.3rem, 3vw, 3.6rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.llmTokens {
+  margin-top: clamp(1.4rem, 2.2vw, 2.4rem);
+}
+
+.llmTokens p {
+  margin: 0;
+  color: rgba(16, 24, 44, 0.8);
+  font-size: clamp(1rem, 1.65vw, 2.02rem);
+  line-height: 1.28;
+}
+
+.lgmBody {
+  margin-top: clamp(1.4rem, 2.2vw, 2.4rem);
+}
+
+.lgmBody p {
+  margin: 0;
+  font-size: clamp(1rem, 1.58vw, 1.95rem);
+  line-height: 1.32;
+  font-weight: 600;
+}
+
+.lgmFoot {
+  margin-top: clamp(1.3rem, 2.1vw, 2.4rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.7rem);
+  font-weight: 600;
+}
+
+.articleLink,
+.articleLinkSmall {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: transform 280ms ease, opacity 280ms ease;
+}
+
+.articleLink {
+  margin-top: clamp(2.2rem, 4vw, 3.9rem);
+  font-size: clamp(1.3rem, 1.8vw, 2rem);
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+}
+
+.articleLink:hover,
+.articleLinkSmall:hover {
+  transform: translateY(-2px);
+  opacity: 0.86;
+}
+
+.ugmGlyph {
+  margin-top: clamp(1.2rem, 2vw, 2rem);
+  width: 116px;
+  height: 116px;
+  color: #111827;
+}
+
+.dataCollectionSection {
+  padding-top: clamp(2rem, 3vw, 3rem);
+}
+
+.dataCards {
+  margin-top: clamp(2rem, 3.8vw, 4rem);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.9rem, 1.5vw, 1.8rem);
+}
+
+.dataCard {
+  aspect-ratio: 1 / 1;
+  border-radius: 11px;
+  border: 1.5px solid rgba(10, 22, 40, 0.35);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.dataList {
+  margin: clamp(1.8rem, 3vw, 3rem) 0 0 clamp(2.6rem, 3.6vw, 3.6rem);
+  color: rgba(0, 0, 0, 0.84);
+}
+
+.dataList p {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 1.95rem);
+}
+
+.dataList ul {
+  margin: 6px 0 0;
+  padding-left: 28px;
+  font-size: clamp(1.15rem, 1.8vw, 1.65rem);
+  line-height: 1.4;
+}
+
+.fusingSection {
+  padding-top: clamp(0.9rem, 2vw, 2.2rem);
+}
+
+.fusingLayout {
+  min-height: min(75vh, 820px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 46%);
+  align-items: start;
+  gap: 20px;
+}
+
+.fusingTitle {
+  margin: 0;
+  font-size: clamp(2.4rem, 3.7vw, 4rem);
+  letter-spacing: -0.03em;
+}
+
+.fusingList {
+  margin: clamp(2.1rem, 3.4vw, 3.6rem) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: clamp(1.1rem, 2.2vw, 2.2rem);
+}
+
+.fusingList li {
+  font-size: clamp(2.1rem, 3.2vw, 4rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.fusingLines {
+  width: 100%;
+  height: min(680px, 76vh);
+}
+
+.databaseSection {
+  padding-top: clamp(0.6rem, 2vw, 2rem);
+}
+
+.databaseStage {
+  min-height: min(74vh, 760px);
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.databaseIncomingLines {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(900px, 92%);
+  height: 140px;
+}
+
+.databaseIconWrap {
+  width: min(390px, 90vw);
+}
+
+.databaseSvg {
+  width: 100%;
+  height: auto;
+}
+
+.gridIntroSection {
+  padding-top: clamp(0.8rem, 2vw, 2rem);
+}
+
+.gridIntroCard,
+.fullBleedCard,
+.gridArticleCard,
+.genlayersCard,
+.dynamicStage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.gridIntroCard {
+  margin-top: 16px;
+  height: clamp(340px, 57vw, 760px);
+  border: 1px solid rgba(10, 22, 40, 0.2);
+}
+
+.coverImage,
+.coverImageMap,
+.coverImageRight {
+  object-fit: cover;
+}
+
+.coverImageMap {
+  object-position: center;
+  filter: saturate(0.7) contrast(0.95) brightness(0.84);
+}
+
+.imageShade,
+.imageShadeStrong {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.imageShade {
+  background: linear-gradient(90deg, rgba(7, 16, 34, 0.56) 0%, rgba(7, 16, 34, 0.22) 60%, rgba(7, 16, 34, 0.1) 100%);
+}
+
+.imageShadeStrong {
+  background: linear-gradient(90deg, rgba(5, 12, 26, 0.55) 0%, rgba(5, 12, 26, 0.2) 58%, rgba(5, 12, 26, 0.06) 100%);
+}
+
+.gridIntroCopy {
+  position: absolute;
+  inset: auto auto 16% 4.4%;
+  max-width: min(760px, 83%);
+  font-size: clamp(2rem, 4vw, 4.4rem);
+  line-height: 1.13;
+  color: #f7f9ff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.scrollHint {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: clamp(1.35rem, 1.8vw, 1.8rem);
+}
+
+.scrollHint span:first-child {
+  font-size: clamp(2rem, 2.5vw, 2.6rem);
+}
+
+.gridFullSection {
+  margin-top: 16px;
+}
+
+.fullBleedCard {
+  height: min(78vh, 930px);
+  border-radius: 9px;
+}
+
+.gridFullCopy {
+  position: absolute;
+  inset: 9% auto auto clamp(1.4rem, 4vw, 3.6rem);
+  max-width: min(760px, 70%);
+  font-size: clamp(2.2rem, 4.4vw, 4.6rem);
+  line-height: 1.1;
+  color: rgba(246, 248, 255, 0.97);
+}
+
+.gridArticleSection {
+  padding-top: clamp(2rem, 3.2vw, 3.6rem);
+}
+
+.gridArticleCard {
+  margin-top: 18px;
+  height: clamp(360px, 56vw, 720px);
+  border: 1px solid rgba(10, 22, 40, 0.2);
+  background: #0f1e3d;
+}
+
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(12, 27, 56, 0.58) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(12, 27, 56, 0.58) 1px, transparent 1px);
+  background-size: 22px 100%, 100% 22px;
+}
+
+.gridTopCopy {
+  position: absolute;
+  top: clamp(1.2rem, 3.2vw, 2.7rem);
+  right: clamp(1rem, 3.4vw, 2.8rem);
+  width: min(640px, 60%);
+  margin: 0;
+  font-size: clamp(1.5rem, 2.6vw, 2.8rem);
+  line-height: 1.2;
+  color: rgba(243, 246, 255, 0.94);
+  text-align: right;
+}
+
+.gridGlassPanel {
+  position: absolute;
+  left: clamp(0.7rem, 2.7vw, 1.8rem);
+  right: auto;
+  bottom: clamp(0.7rem, 2.7vw, 1.8rem);
+  width: min(820px, calc(100% - 2.5rem));
+  padding: clamp(1rem, 2.5vw, 2rem);
+  border-radius: 10px;
+  border: 1px solid rgba(225, 233, 255, 0.35);
+  background: rgba(201, 213, 245, 0.36);
+  backdrop-filter: blur(6px);
+}
+
+.gridGlassPanel p {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.3vw, 2.4rem);
+  color: rgba(246, 248, 255, 0.96);
+  line-height: 1.3;
+}
+
+.articleLinkSmall {
+  position: absolute;
+  right: clamp(1rem, 2.5vw, 1.8rem);
+  bottom: clamp(1rem, 2.5vw, 1.5rem);
+  color: rgba(243, 246, 255, 0.92);
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  font-weight: 600;
+}
+
+.gridNo {
+  margin: 16px 0 0;
+  font-size: clamp(1.8rem, 2.2vw, 2.3rem);
+}
+
+.coreReasoningSection {
+  padding-top: clamp(1.3rem, 2.2vw, 3rem);
+  min-height: min(90vh, 820px);
+}
+
+.coreReasoningBody {
+  position: relative;
+  z-index: 1;
+}
+
+.coreReasoningText {
+  margin: 30px 0 0;
+  max-width: 900px;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.28;
+}
+
+.genlayersSection {
+  margin-top: clamp(1.4rem, 2.6vw, 2.2rem);
+}
+
+.genlayersCard {
+  min-height: min(86vh, 980px);
+}
+
+.genlayersHeader {
+  position: absolute;
+  top: clamp(1rem, 5vw, 4.2rem);
+  left: clamp(1rem, 4.5vw, 4.4rem);
+  max-width: min(900px, 68%);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.genlayersHeader h2 {
+  margin: 0;
+  font-size: clamp(2.4rem, 4.4vw, 5.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.genlayersHeader p {
+  margin: clamp(1rem, 2vw, 1.8rem) 0 0;
+  font-size: clamp(1.6rem, 2.4vw, 3rem);
+  line-height: 1.26;
+}
+
+.genlayersShapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.genShapeLeft,
+.genShapeRight {
+  position: absolute;
+  background: rgba(222, 255, 116, 0.46);
+  border: 3px solid rgba(222, 255, 116, 0.82);
+}
+
+.genShapeLeft {
+  left: 41%;
+  bottom: 16%;
+  width: 7.5%;
+  height: 17%;
+  clip-path: polygon(18% 22%, 100% 0%, 100% 82%, 26% 100%, 0% 60%, 0% 34%);
+}
+
+.genShapeRight {
+  right: 21%;
+  top: 12%;
+  width: 10.2%;
+  height: 62%;
+  clip-path: polygon(29% 0%, 84% 0%, 100% 38%, 100% 65%, 76% 100%, 16% 100%, 14% 53%, 0% 31%);
+}
+
+.calloutConnectorLeft,
+.calloutConnectorRight {
+  position: absolute;
+  height: 2px;
+  background: #d5f94f;
+}
+
+.calloutConnectorLeft {
+  left: 31%;
+  top: 63%;
+  width: 8%;
+  transform: rotate(1deg);
+}
+
+.calloutConnectorRight {
+  right: 19.5%;
+  top: 30%;
+  width: 4.3%;
+  transform: rotate(-2deg);
+}
+
+.genlayersCallouts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.genlayersCallout {
+  position: absolute;
+  border-radius: 2px;
+  background: rgba(14, 17, 20, 0.86);
+  color: #2fb86f;
+  padding: 12px 16px;
+  min-width: 246px;
+}
+
+.genlayersCallout p {
+  margin: 0;
+  font-size: clamp(1rem, 1.5vw, 1.72rem);
+  line-height: 1.45;
+}
+
+.genlayersCalloutLeft {
+  left: clamp(0.8rem, 4vw, 3rem);
+  bottom: clamp(1rem, 5vw, 3rem);
+}
+
+.genlayersCalloutRight {
+  right: clamp(0.8rem, 2.5vw, 2.4rem);
+  top: clamp(1rem, 13vw, 6rem);
+}
+
+.researchSection {
+  padding-top: clamp(1.8rem, 3vw, 3.2rem);
+}
+
+.researchHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.researchHead h2 {
+  margin: 0;
+  font-size: clamp(2.6rem, 4.4vw, 5.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.researchHead p {
+  margin: 8px 0 0;
+  max-width: 460px;
+  text-align: right;
+  font-size: clamp(1.2rem, 1.65vw, 1.65rem);
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.researchDivider {
+  width: 100%;
+  height: 1px;
+  margin-top: clamp(1.3rem, 2.5vw, 2.5rem);
+  background: rgba(255, 178, 178, 0.35);
+}
+
+.researchSubhead {
+  margin: clamp(1.8rem, 3vw, 3rem) 0 0;
+  font-size: clamp(2.4rem, 4vw, 4.4rem);
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+
+.researchScroller {
+  margin-top: clamp(1.2rem, 2.4vw, 2rem);
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.researchCard {
+  position: relative;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(10, 22, 40, 0.1);
+  background: rgba(14, 22, 42, 0.06);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 280ms ease, box-shadow 280ms ease, background-color 280ms ease;
+}
+
+.researchCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 26px rgba(25, 42, 72, 0.14);
+  background: rgba(14, 22, 42, 0.08);
+}
+
+.researchCard span {
+  display: block;
+  font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+  line-height: 1.28;
+}
+
+.researchCardFeatured {
+  width: min(620px, 72vw);
+  min-height: 360px;
+  padding: 26px 24px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.researchArrow {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  font-size: 2.7rem;
+  color: #0a1628;
+}
+
+.researchCardThin {
+  width: min(240px, 50vw);
+  min-height: 360px;
+  padding: 20px 14px;
+}
+
+.dynamicSection {
+  margin-top: clamp(1.4rem, 2.6vw, 2.2rem);
+}
+
+.dynamicStage {
+  min-height: min(86vh, 980px);
+  border-radius: 9px;
+}
+
+.dynamicTopBlur,
+.dynamicBottomBlur {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 14%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.dynamicTopBlur {
+  top: 0;
+  background: linear-gradient(180deg, rgba(242, 244, 248, 0.92) 0%, rgba(242, 244, 248, 0) 100%);
+}
+
+.dynamicBottomBlur {
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(242, 244, 248, 0.9) 0%, rgba(242, 244, 248, 0) 100%);
+}
+
+.dynamicHeading {
+  position: absolute;
+  top: clamp(0.9rem, 4vw, 2.3rem);
+  left: clamp(1rem, 4vw, 3.2rem);
+  right: clamp(1rem, 2.6vw, 2.8rem);
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: clamp(1rem, 2vw, 2.2rem);
+}
+
+.dynamicHeading h2 {
+  margin: 0;
+  max-width: 860px;
+  font-size: clamp(2.2rem, 4.2vw, 5.4rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: rgba(247, 248, 254, 0.93);
+}
+
+.dynamicPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(231, 236, 255, 0.45);
+  padding: 12px 22px;
+  color: rgba(247, 250, 255, 0.94);
+  text-decoration: none;
+  font-size: clamp(1rem, 1.3vw, 1.3rem);
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(4px);
+  transition: transform 280ms ease, background-color 280ms ease;
+}
+
+.dynamicPill:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.dynamicColumns {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.dynamicColumn {
+  position: relative;
+  overflow: hidden;
+}
+
+.dynamicShadeLeft,
+.dynamicShadeMid,
+.dynamicShadeRight {
+  position: absolute;
+  inset: 0;
+}
+
+.dynamicShadeLeft {
+  background: linear-gradient(0deg, rgba(13, 17, 32, 0.63) 0%, rgba(13, 17, 32, 0.26) 100%);
+}
+
+.dynamicShadeMid {
+  background: linear-gradient(0deg, rgba(16, 15, 22, 0.65) 0%, rgba(16, 15, 22, 0.2) 100%);
+}
+
+.dynamicShadeRight {
+  background: linear-gradient(0deg, rgba(11, 14, 20, 0.72) 0%, rgba(11, 14, 20, 0.3) 100%);
+}
+
+.dynamicPinLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.pin {
+  position: absolute;
+  height: 8px;
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+.pinBlue {
+  background: rgba(72, 117, 255, 0.9);
+}
+
+.pinRed {
+  background: rgba(230, 85, 73, 0.9);
+}
+
+.pinGreen {
+  background: rgba(108, 197, 89, 0.9);
+}
+
+.dynamicCaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(0.8rem, 3vw, 2rem);
+  z-index: 3;
+  text-align: center;
+  color: rgba(245, 247, 255, 0.95);
+}
+
+.dynamicCaption small {
+  display: block;
+  font-size: clamp(1rem, 1.3vw, 1.35rem);
+  color: rgba(245, 247, 255, 0.82);
+}
+
+.dynamicCaption p {
+  margin: 2px 0 0;
+  font-size: clamp(2rem, 3vw, 3.6rem);
+  line-height: 1.12;
+}
+
+.coverImageRight {
+  object-fit: cover;
+  object-position: 66% center;
+}
+
+.careersSection {
+  padding-top: clamp(1.8rem, 3vw, 2.8rem);
+}
+
+.careersHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.careersHead h2 {
+  margin: 0;
+  font-size: clamp(2.7rem, 4.4vw, 5.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #192957;
+}
+
+.careersHead p {
+  margin: 8px 0 0;
+  max-width: 530px;
+  text-align: right;
+  font-size: clamp(1.2rem, 1.65vw, 1.65rem);
+  color: rgba(0, 0, 0, 0.72);
+  line-height: 1.35;
+}
+
+.careersForm {
+  margin: clamp(2rem, 3.5vw, 3.8rem) auto 0;
+  width: min(560px, 100%);
+  display: grid;
+  gap: 18px;
+}
+
+.careersForm label {
+  display: grid;
+  gap: 8px;
+}
+
+.careersForm label span {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.careersForm input {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.45);
+  background: transparent;
+  padding: 4px 0 8px;
+  font-size: 1rem;
+  color: #0a1628;
+  outline: none;
+  transition: border-color 220ms ease;
+}
+
+.careersForm input:focus {
+  border-color: rgba(25, 41, 87, 0.9);
+}
+
+.careersFormMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.careersFormMeta p {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.careersSend {
+  border: 0;
+  background: transparent;
+  color: rgba(25, 41, 87, 0.8);
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 220ms ease;
+}
+
+.careersSend:hover {
+  color: rgba(25, 41, 87, 1);
+}
+
+.hiringSection {
+  margin-top: clamp(1rem, 2.2vw, 2rem);
+}
+
+.hiringArcWrap {
+  position: relative;
+  min-height: min(54vh, 640px);
+  border-top-left-radius: 2000px 280px;
+  border-top-right-radius: 2000px 280px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: radial-gradient(circle at 56% 16%, #4faff2 0%, #2e4a98 36%, #253583 58%, #2f4fb8 100%);
+  overflow: hidden;
+}
+
+.hiringArcHighlight {
+  position: absolute;
+  inset: 0;
+  border-top-left-radius: 2000px 280px;
+  border-top-right-radius: 2000px 280px;
+  border-top: 3px solid rgba(255, 255, 255, 0.44);
+  box-shadow: inset 0 14px 26px rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+}
+
+.hiringCopy {
+  position: absolute;
+  top: clamp(1.4rem, 5vw, 3.6rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(760px, 90vw);
+  text-align: center;
+  color: rgba(246, 249, 255, 0.95);
+}
+
+.hiringCopy h2 {
+  margin: 0;
+  font-size: clamp(3rem, 4.7vw, 4.8rem);
+  letter-spacing: -0.03em;
+}
+
+.hiringCopy p {
+  margin: 10px 0 0;
+  font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+  color: rgba(231, 238, 255, 0.85);
+}
+
+.sidebar {
+  position: sticky;
+  top: 250px;
+  width: 100%;
+  color: #0a1628;
+  transition: opacity 240ms ease;
+}
+
+.sidebarHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebarTitle {
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.sidebarList {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.sidebarLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(10, 22, 40, 0.88);
+  text-decoration: none;
+  font-size: 1.85rem;
+  transition: color 220ms ease;
+}
+
+.sidebarLink:hover {
+  color: #0a1628;
+}
+
+.sidebarLinkActive {
+  color: #0a1628;
+  font-weight: 600;
+}
+
+.sidebarMarker {
+  font-weight: 700;
+  line-height: 1;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 620ms ease,
+    transform 620ms cubic-bezier(0.2, 0.75, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.revealVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes dashFlow {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@media (max-width: 1450px) {
+  .heroLayout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .pipelineShell {
+    justify-self: start;
+  }
+
+  .lgmColumns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dynamicHeading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dynamicPill {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .pageShell {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .sidebarColumn {
+    display: none;
+  }
+
+  .section {
+    scroll-margin-top: 96px;
+  }
+
+  .lgmColumns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dataCards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .fusingLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fusingLines {
+    height: 320px;
+  }
+
+  .gridTopCopy {
+    width: min(680px, 92%);
+    text-align: left;
+    left: 18px;
+    right: auto;
+  }
+
+  .gridGlassPanel {
+    width: calc(100% - 1.6rem);
+  }
+
+  .genlayersHeader {
+    max-width: 90%;
+  }
+
+  .dynamicColumns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dynamicColumn {
+    min-height: 420px;
+  }
+
+  .dynamicStage {
+    min-height: 1260px;
+  }
+
+  .careersHead,
+  .researchHead {
+    flex-direction: column;
+  }
+
+  .researchHead p,
+  .careersHead p {
+    text-align: left;
+  }
+}
+
+@media (max-width: 767px) {
+  .pageBody {
+    padding-top: 72px;
+  }
+
+  .pageShell {
+    padding: 0 14px;
+  }
+
+  .section {
+    scroll-margin-top: 80px;
+  }
+
+  .gridIntroCopy,
+  .gridFullCopy {
+    max-width: 94%;
+  }
+
+  .gridGlassPanel {
+    padding-bottom: 54px;
+  }
+
+  .articleLinkSmall {
+    bottom: 12px;
+  }
+
+  .dataCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .researchCardFeatured,
+  .researchCardThin {
+    min-height: 280px;
+  }
+
+  .hiringArcWrap {
+    min-height: 420px;
+  }
+
+  .pipelineFooter {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .genlayersCallout {
+    min-width: 190px;
+    max-width: 62%;
+    padding: 10px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .dashedPathRed,
+  .dashedPathGray {
+    animation: none;
+  }
+
+  .articleLink,
+  .articleLinkSmall,
+  .researchCard,
+  .dynamicPill,
+  .careersSend {
+    transition: none;
+  }
+}

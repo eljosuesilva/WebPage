@@ -70,7 +70,7 @@ export const DataFusion = () => {
                         <h3 className="text-2xl text-white font-normal">Data Digestion</h3>
                         <div className="aspect-square w-full bg-[#D9D9D9] border border-white/30 rounded-lg"></div>
                         <p className="text-white/70 text-sm leading-relaxed">
-                            We've developed a technology that turns unstructured, broken or un-spatially paired data into useful information
+                            We&apos;ve developed a technology that turns unstructured, broken or un-spatially paired data into useful information
                         </p>
                     </div>
 

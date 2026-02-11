@@ -2,15 +2,16 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useState } from "react";
+
+const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 // Scramble/Decode text effect component
 const ScrambleText = ({
     text,
     isActive,
     delay = 0,
-    className = ""
+    className = "",
 }: {
     text: string;
     isActive: boolean;
@@ -18,60 +19,44 @@ const ScrambleText = ({
     className?: string;
 }) => {
     const [displayText, setDisplayText] = useState(text);
-    const [isAnimating, setIsAnimating] = useState(false);
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-    const scramble = useCallback(() => {
-        if (!isActive) {
-            setDisplayText(text);
-            return;
-        }
-
-        setIsAnimating(true);
-        let iteration = 0;
-        const totalIterations = text.length;
-        const intervalTime = 20;
-
-        const interval = setInterval(() => {
-            setDisplayText(prev =>
-                text
-                    .split("")
-                    .map((char, index) => {
-                        if (char === " ") return " ";
-                        if (index < iteration) {
-                            return text[index];
-                        }
-                        return chars[Math.floor(Math.random() * chars.length)];
-                    })
-                    .join("")
-            );
-
-            iteration += 1;
-
-            if (iteration >= totalIterations) {
-                clearInterval(interval);
-                setDisplayText(text);
-                setIsAnimating(false);
-            }
-        }, intervalTime);
-
-        return () => clearInterval(interval);
-    }, [isActive, text, chars]);
 
     useEffect(() => {
-        if (isActive) {
-            const timeout = setTimeout(scramble, delay);
-            return () => clearTimeout(timeout);
-        } else {
-            setDisplayText(text);
-        }
-    }, [isActive, delay, scramble, text]);
+        if (!isActive) return;
 
-    return (
-        <span className={`font-mono ${className}`}>
-            {displayText}
-        </span>
-    );
+        let iteration = 0;
+        let interval: ReturnType<typeof setInterval> | undefined;
+
+        const timeout = setTimeout(() => {
+            interval = setInterval(() => {
+                setDisplayText(
+                    text
+                        .split("")
+                        .map((char, index) => {
+                            if (char === " ") return " ";
+                            if (index < iteration) return text[index];
+                            return SCRAMBLE_CHARS[
+                                Math.floor(Math.random() * SCRAMBLE_CHARS.length)
+                            ];
+                        })
+                        .join("")
+                );
+
+                iteration += 1;
+
+                if (iteration >= text.length) {
+                    if (interval) clearInterval(interval);
+                    setDisplayText(text);
+                }
+            }, 20);
+        }, delay);
+
+        return () => {
+            clearTimeout(timeout);
+            if (interval) clearInterval(interval);
+        };
+    }, [delay, isActive, text]);
+
+    return <span className={`font-mono ${className}`}>{isActive ? displayText : text}</span>;
 };
 
 export const Navbar = () => {
@@ -81,7 +66,7 @@ export const Navbar = () => {
         { label: "Our Mission", href: "/our-mission" },
         { label: "Columbus Market Spy", href: "/market-spy" },
         { label: "MapsGPT", href: "/maps-gpt" },
-        { label: "Technology", href: "#" },
+        { label: "Technology", href: "/technology" },
     ];
 
     return (
@@ -110,19 +95,30 @@ export const Navbar = () => {
                                 priority
                             />
                         </div>
-                        <span className="text-xl font-semibold text-[#0a1628] tracking-tight">Columbus Earth</span>
+                        <span className="text-xl font-semibold text-[#0a1628] tracking-tight">
+                            Columbus Earth
+                        </span>
                     </Link>
 
                     {/* Navigation Links + Buttons */}
                     <div className="flex items-center gap-8">
                         <div className="hidden md:flex items-center gap-8">
-                            <Link href="#" className="text-[#0a1628] text-base font-semibold hover:text-gray-600 transition-colors">
+                            <Link
+                                href="#"
+                                className="text-[#0a1628] text-base font-semibold hover:text-gray-600 transition-colors"
+                            >
                                 Product
                             </Link>
-                            <Link href="#" className="text-[#0a1628] text-base font-semibold hover:text-gray-600 transition-colors">
+                            <Link
+                                href="#"
+                                className="text-[#0a1628] text-base font-semibold hover:text-gray-600 transition-colors"
+                            >
                                 Use Cases
                             </Link>
-                            <Link href="#" className="text-[#0a1628] text-base font-semibold hover:text-gray-600 transition-colors">
+                            <Link
+                                href="/technology"
+                                className="text-[#0a1628] text-base font-semibold hover:text-gray-600 transition-colors"
+                            >
                                 Technology
                             </Link>
                         </div>
@@ -131,13 +127,35 @@ export const Navbar = () => {
                             <button className="bg-white text-[#0a1628] hover:bg-gray-50 px-4 py-1.5 text-base font-semibold transition-colors border border-[#0a1628]">
                                 Start Now
                             </button>
-                            <button
-                                className="w-9 h-9 flex items-center justify-center hover:bg-gray-50 transition-colors border border-[#0a1628]"
-                            >
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 12H21" stroke="#0a1628" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M3 6H21" stroke="#0a1628" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M3 18H21" stroke="#0a1628" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <button className="w-9 h-9 flex items-center justify-center hover:bg-gray-50 transition-colors border border-[#0a1628]">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M3 12H21"
+                                        stroke="#0a1628"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M3 6H21"
+                                        stroke="#0a1628"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M3 18H21"
+                                        stroke="#0a1628"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
                                 </svg>
                             </button>
                         </div>
@@ -155,56 +173,50 @@ export const Navbar = () => {
             >
                 <div
                     className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                        isMenuOpen
-                            ? "translate-y-0 opacity-100"
-                            : "-translate-y-6 opacity-0"
+                        isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-6 opacity-0"
                     }`}
                     style={{ transitionDelay: isMenuOpen ? "150ms" : "0ms" }}
                 >
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-
                         {/* Column 1: Description */}
                         <div
                             className={`md:col-span-5 space-y-8 transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                                isMenuOpen
-                                    ? "translate-y-0 opacity-100"
-                                    : "translate-y-6 opacity-0"
+                                isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
                             }`}
                             style={{ transitionDelay: isMenuOpen ? "200ms" : "0ms" }}
                         >
                             <div>
                                 <h4 className="text-xs font-semibold text-gray-500 tracking-wider uppercase mb-4">
-                                    <ScrambleText
-                                        text="COLUMBUS EARTH"
-                                        isActive={isMenuOpen}
-                                        delay={300}
-                                    />
+                                    <ScrambleText text="COLUMBUS EARTH" isActive={isMenuOpen} delay={300} />
                                 </h4>
                                 <p className="text-gray-600 text-lg leading-relaxed max-w-md">
-                                    Columbus Earth Inc. is a spatial frontier AI company building the first production Large Geospatial Model to answer the most difficult questions about our planet.
+                                    Columbus Earth Inc. is a spatial frontier AI company building the first production
+                                    Large Geospatial Model to answer the most difficult questions about our planet.
                                 </p>
                             </div>
 
                             <div className="grid grid-cols-2 gap-8">
                                 <div>
                                     <h4 className="text-xs font-semibold text-gray-500 tracking-wider uppercase mb-2">
-                                        <ScrambleText
-                                            text="CONTACT"
-                                            isActive={isMenuOpen}
-                                            delay={450}
-                                        />
+                                        <ScrambleText text="CONTACT" isActive={isMenuOpen} delay={450} />
                                     </h4>
-                                    <a href="mailto:contact@columbus.earth" className="text-gray-900 hover:text-primary font-medium block transition-colors">contact@columbus.earth</a>
+                                    <a
+                                        href="mailto:contact@columbus.earth"
+                                        className="text-gray-900 hover:text-primary font-medium block transition-colors"
+                                    >
+                                        contact@columbus.earth
+                                    </a>
                                 </div>
                                 <div>
                                     <h4 className="text-xs font-semibold text-gray-500 tracking-wider uppercase mb-2">
-                                        <ScrambleText
-                                            text="SOCIAL"
-                                            isActive={isMenuOpen}
-                                            delay={550}
-                                        />
+                                        <ScrambleText text="SOCIAL" isActive={isMenuOpen} delay={550} />
                                     </h4>
-                                    <a href="#" className="text-gray-900 hover:text-primary font-medium block transition-colors">LinkedIn</a>
+                                    <a
+                                        href="#"
+                                        className="text-gray-900 hover:text-primary font-medium block transition-colors"
+                                    >
+                                        LinkedIn
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -216,31 +228,21 @@ export const Navbar = () => {
                         <div className="md:col-span-4 space-y-6">
                             <h4
                                 className={`text-xs font-semibold text-gray-500 tracking-wider uppercase mb-4 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                                    isMenuOpen
-                                        ? "translate-y-0 opacity-100"
-                                        : "translate-y-4 opacity-0"
+                                    isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                                 }`}
                                 style={{ transitionDelay: isMenuOpen ? "250ms" : "0ms" }}
                             >
-                                <ScrambleText
-                                    text="COMPANY"
-                                    isActive={isMenuOpen}
-                                    delay={400}
-                                />
+                                <ScrambleText text="COMPANY" isActive={isMenuOpen} delay={400} />
                             </h4>
                             <ul className="space-y-4">
                                 {menuItems.map((item, index) => (
                                     <li
                                         key={item.href}
                                         className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                                            isMenuOpen
-                                                ? "translate-y-0 opacity-100"
-                                                : "translate-y-6 opacity-0"
+                                            isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
                                         }`}
                                         style={{
-                                            transitionDelay: isMenuOpen
-                                                ? `${350 + index * 80}ms`
-                                                : "0ms"
+                                            transitionDelay: isMenuOpen ? `${350 + index * 80}ms` : "0ms",
                                         }}
                                     >
                                         <Link
@@ -248,13 +250,14 @@ export const Navbar = () => {
                                             className="group text-xl font-medium text-gray-900 hover:text-primary block transition-all duration-300 flex items-center"
                                         >
                                             <span className="mr-2">+</span>
-                                            <span className="group-hover:translate-x-1 transition-transform duration-300">{item.label}</span>
+                                            <span className="group-hover:translate-x-1 transition-transform duration-300">
+                                                {item.label}
+                                            </span>
                                         </Link>
                                     </li>
                                 ))}
                             </ul>
                         </div>
-
                     </div>
                 </div>
 
