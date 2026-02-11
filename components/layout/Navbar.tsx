@@ -95,14 +95,14 @@ export const Navbar = () => {
                                 priority
                             />
                         </div>
-                        <span className="text-[22px] font-normal leading-none tracking-[-0.01em] text-[#0a1628]">
+                        <span className="text-[22px] font-semibold leading-none tracking-[-0.01em] text-[#0a1628]">
                             Columbus Earth
                         </span>
                     </Link>
 
                     {/* Navigation Links + Buttons */}
                     <div className="flex items-center gap-5">
-                        <div className="hidden items-center gap-10 md:flex">
+                        <div className="hidden items-center gap-15 md:flex">
                             <Link
                                 href="#"
                                 className="text-[16px] font-normal text-[#0a1628] transition-colors hover:text-gray-600"
