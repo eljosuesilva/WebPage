@@ -101,58 +101,58 @@ export const Navbar = () => {
                     </Link>
 
                     {/* Navigation Links + Buttons */}
-                    <div className="flex items-center gap-5">
+                    <div className="flex items-center gap-10">
                         <div className="hidden items-center gap-15 md:flex">
                             <Link
                                 href="#"
-                                className="text-[16px] font-normal text-[#0a1628] transition-colors hover:text-gray-600"
+                                className="text-[18px] font-normal text-[#0a1628] transition-colors hover:text-gray-600"
                             >
                                 Product
                             </Link>
                             <Link
                                 href="#"
-                                className="text-[16px] font-normal text-[#0a1628] transition-colors hover:text-gray-600"
+                                className="text-[18px] font-normal text-[#0a1628] transition-colors hover:text-gray-600"
                             >
                                 Use Cases
                             </Link>
                             <Link
                                 href="/technology"
-                                className="text-[16px] font-normal text-[#0a1628] transition-colors hover:text-gray-600"
+                                className="text-[18px] font-normal text-[#0a1628] transition-colors hover:text-gray-600"
                             >
                                 Technology
                             </Link>
                         </div>
 
-                        <div className="flex items-center gap-2.5">
-                            <button className="h-[44px] min-w-[188px] border border-[#0a1628]/85 bg-white px-8 text-[15px] font-normal text-[#0a1628] transition-colors hover:bg-gray-50">
+                        <div className="flex items-center gap-8">
+                            <button className="h-[44px] min-w-[188px] border border-[#0a1628]/85 bg-white px-8 text-[18px] font-semibold text-[#0a1628] transition-colors hover:bg-gray-50">
                                 Start Now
                             </button>
                             <button className="flex h-[44px] w-[44px] items-center justify-center border border-[#0a1628]/85 transition-colors hover:bg-gray-50">
                                 <svg
-                                    width="16"
-                                    height="16"
+                                    width="26"
+                                    height="26"
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
                                     <path
-                                        d="M3 6H21"
+                                        d="M2 6H22"
                                         stroke="#0a1628"
-                                        strokeWidth="2"
+                                        strokeWidth="2.6"
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                     />
                                     <path
-                                        d="M3 12H21"
+                                        d="M2 12H22"
                                         stroke="#0a1628"
-                                        strokeWidth="2"
+                                        strokeWidth="2.6"
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                     />
                                     <path
-                                        d="M3 18H21"
+                                        d="M2 18H22"
                                         stroke="#0a1628"
-                                        strokeWidth="2"
+                                        strokeWidth="2.6"
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                     />
