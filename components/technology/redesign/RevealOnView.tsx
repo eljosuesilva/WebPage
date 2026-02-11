@@ -7,15 +7,13 @@ import styles from "../technology.module.css";
 import type { RevealOnViewProps } from "./types";
 
 export function RevealOnView({
-  as = "div",
   children,
   className,
   delayMs = 0,
   threshold = 0.2,
   once = true,
 }: RevealOnViewProps) {
-  const Tag = as;
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -51,7 +49,7 @@ export function RevealOnView({
   } as CSSProperties;
 
   return (
-    <Tag
+    <div
       ref={ref}
       style={style}
       className={[
@@ -63,6 +61,6 @@ export function RevealOnView({
         .join(" ")}
     >
       {children}
-    </Tag>
+    </div>
   );
 }

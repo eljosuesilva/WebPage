@@ -33,10 +33,7 @@ export type GeoOverlayItem = {
   items: string[];
 };
 
-export type RevealTag = "div" | "section" | "article" | "span";
-
 export type RevealOnViewProps = {
-  as?: RevealTag;
   children: ReactNode;
   className?: string;
   delayMs?: number;
