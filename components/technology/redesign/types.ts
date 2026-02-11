@@ -5,7 +5,6 @@ export type TechnologySectionId =
   | "lgm-vs-llm"
   | "data-collection"
   | "fusing"
-  | "database-visual"
   | "grid-intro"
   | "grid-full"
   | "grid-article"

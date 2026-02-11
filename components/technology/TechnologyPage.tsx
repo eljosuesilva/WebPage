@@ -1,13 +1,14 @@
+import { Navbar } from "@/components/layout/Navbar";
+
 import styles from "./technology.module.css";
 import { TechFooter } from "./TechFooter";
-import { TechNavbar } from "./TechNavbar";
 import { TechSidebarNav } from "./TechSidebarNav";
 import { TechnologySections } from "./redesign/TechnologySections";
 
 export function TechnologyPage() {
   return (
     <main className={`${styles.page} ${styles.dotGrid}`}>
-      <TechNavbar />
+      <Navbar />
 
       <div className={styles.pageBody}>
         <div className={styles.pageShell}>

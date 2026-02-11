@@ -4,22 +4,18 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import styles from "./technology.module.css";
-import {
-  OBSERVED_SECTION_IDS,
-  SIDEBAR_HIDDEN_ON,
-  TECHNOLOGY_NAV_ITEMS,
-} from "./redesign/content";
+import { OBSERVED_SECTION_IDS, TECHNOLOGY_NAV_ITEMS } from "./redesign/content";
 import type { TechnologySectionId } from "./redesign/types";
 
 export function TechSidebarNav() {
   const [activeId, setActiveId] = useState<TechnologySectionId>("index");
 
   useEffect(() => {
-    const elements = OBSERVED_SECTION_IDS.map((id) => document.getElementById(id)).filter(
+    const sections = OBSERVED_SECTION_IDS.map((id) => document.getElementById(id)).filter(
       (node): node is HTMLElement => Boolean(node)
     );
 
-    if (elements.length === 0) return;
+    if (sections.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -29,45 +25,36 @@ export function TechSidebarNav() {
 
         if (!visible?.target?.id) return;
 
-        const id = visible.target.id as TechnologySectionId;
-        setActiveId(id);
+        setActiveId(visible.target.id as TechnologySectionId);
       },
       {
-        threshold: [0.2, 0.35, 0.5, 0.65],
-        rootMargin: "-18% 0px -54% 0px",
+        threshold: [0.25, 0.45, 0.65],
+        rootMargin: "-18% 0px -48% 0px",
       }
     );
 
-    for (const element of elements) {
-      observer.observe(element);
+    for (const section of sections) {
+      observer.observe(section);
     }
 
     return () => observer.disconnect();
   }, []);
 
-  const hideSidebar = SIDEBAR_HIDDEN_ON.has(activeId);
-
   return (
-    <aside
-      className={[styles.sidebar, hideSidebar ? styles.sidebarHidden : ""].join(" ")}
-      aria-hidden={hideSidebar}
-    >
-      <p className={styles.sidebarTitle}>Index</p>
+    <aside className={styles.sidebar} aria-label="Technology section index">
       <nav>
         <ul className={styles.sidebarList}>
           {TECHNOLOGY_NAV_ITEMS.map((item) => {
-            const isActive = item.id === activeId;
+            const isActive = activeId === item.id;
 
             return (
               <li key={item.id}>
                 <Link
                   href={`#${item.id}`}
-                  className={[
-                    styles.sidebarLink,
-                    isActive ? styles.sidebarLinkActive : "",
-                  ].join(" ")}
+                  className={[styles.sidebarLink, isActive ? styles.sidebarLinkActive : ""].join(" ")}
+                  aria-current={isActive ? "page" : undefined}
                 >
-                  {isActive ? <span className={styles.sidebarMarker}>+</span> : null}
+                  <span className={styles.sidebarMarker}>{isActive ? "+" : ""}</span>
                   <span>{item.label}</span>
                 </Link>
               </li>

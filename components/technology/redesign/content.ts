@@ -6,6 +6,7 @@ import type {
 } from "./types";
 
 export const TECHNOLOGY_NAV_ITEMS: NavItem[] = [
+  { id: "index", label: "Index" },
   { id: "lgm-vs-llm", label: "An LGM vs LLM" },
   { id: "data-collection", label: "Data Collection" },
   { id: "core-reasoning", label: "Core Reasoning" },
@@ -18,7 +19,6 @@ export const OBSERVED_SECTION_IDS: TechnologySectionId[] = [
   "lgm-vs-llm",
   "data-collection",
   "fusing",
-  "database-visual",
   "grid-intro",
   "grid-full",
   "grid-article",
@@ -30,18 +30,11 @@ export const OBSERVED_SECTION_IDS: TechnologySectionId[] = [
   "hiring-humans",
 ];
 
-export const SIDEBAR_HIDDEN_ON = new Set<TechnologySectionId>([
-  "grid-full",
-  "genlayers",
-  "dynamic-layers",
-  "hiring-humans",
-]);
-
 export const LLM_TOKEN_LINES = [
-  "A large language learning model is trained on",
-  "huge sets of text data for tokenization.",
-  "280, 1170, 296, 4088, 30773, 4012, 5079,",
-  "2534, 3883, 263, 29072, 268, 64696.",
+  "a large language model is trained on",
+  "huge sets of text data for tokenization",
+  "280, 1170, 296, 4088, 30773, 4012, 5079",
+  "2534, 3883, 263, 29072, 268, 64696",
 ];
 
 export const LGM_COLUMNS = [
@@ -50,7 +43,7 @@ export const LGM_COLUMNS = [
     lines: [
       "Comprehending images and",
       "predicting certain things like size",
-      "and shape from Earth imagery.",
+      "from Earth imagery and context.",
     ],
     footer: "Reverse Diffusion",
   },

@@ -5,7 +5,6 @@ const SECTION_IDS = [
   "lgm-vs-llm",
   "data-collection",
   "fusing",
-  "database-visual",
   "grid-intro",
   "grid-full",
   "grid-article",
@@ -45,25 +44,27 @@ test.describe("Technology page", () => {
     expect(isOrdered).toBeTruthy();
   });
 
-  test("supports sidebar hash navigation and active state", async ({ page }) => {
+  test("sidebar keeps index active and updates active marker on scroll", async ({ page }) => {
     await page.goto("/technology");
 
-    const dataCollectionLink = page.getByRole("link", { name: /Data Collection/i }).first();
-    await dataCollectionLink.click();
-    await expect(page).toHaveURL(/#data-collection$/);
+    const sidebar = page.getByLabel("Technology section index");
+    const indexLink = sidebar.getByRole("link", { name: "Index" });
+    await expect(indexLink).toHaveAttribute("aria-current", "page");
 
     await page.locator("#core-reasoning").scrollIntoViewIfNeeded();
-    const coreReasoningLink = page.getByRole("link", { name: /Core Reasoning/i }).first();
-    await expect(coreReasoningLink).toContainText("+");
+
+    const coreReasoningLink = sidebar.getByRole("link", { name: "Core Reasoning" });
+    await expect(coreReasoningLink).toHaveAttribute("aria-current", "page");
   });
 
-  test("hides sidebar on full-bleed sections", async ({ page }) => {
+  test("supports sidebar hash navigation", async ({ page }) => {
     await page.goto("/technology");
 
-    await page.locator("#grid-full").scrollIntoViewIfNeeded();
+    const sidebar = page.getByLabel("Technology section index");
+    const dataCollectionLink = sidebar.getByRole("link", { name: "Data Collection" });
+    await dataCollectionLink.click();
 
-    const sidebar = page.locator("aside").first();
-    await expect(sidebar).toHaveAttribute("aria-hidden", "true");
+    await expect(page).toHaveURL(/#data-collection$/);
   });
 
   test("careers form is configured with client validation and mailto", async ({ page }) => {
