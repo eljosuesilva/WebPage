@@ -5,7 +5,7 @@
   --tech-shell-inline: clamp(14px, 2.3vw, 40px);
   --tech-content-gutter: clamp(18px, 2.05vw, 32px);
   min-height: 100vh;
-  background-color: #fafaf9;
+  background-color: #fff;
   color: #0a1628;
   overflow-x: clip;
 }
@@ -15,7 +15,6 @@
   background-repeat: repeat;
   background-size: 16px 16px;
   background-position: 0 0;
-  background-attachment: fixed;
 }
 
 .pageBody {
@@ -42,12 +41,13 @@
   position: relative;
   min-height: calc(100vh - var(--tech-header-height));
   background: #fff;
-  border-right: 1px solid rgba(10, 22, 40, 0.08);
+  border-right: none;
   padding-inline: 14px;
 }
 
 .contentColumn {
   min-width: 0;
+  background: #fff;
 }
 
 .section {
@@ -108,6 +108,7 @@
   min-height: 100%;
   display: flex;
   align-items: center;
+  padding-left: 12px;
 }
 
 .sidebarHidden {
@@ -693,37 +694,33 @@
 }
 
 .gridSequenceKicker {
-  position: absolute;
-  left: clamp(1rem, 2.6vw, 2.15rem);
-  top: clamp(0.9rem, 2.2vw, 1.7rem);
-  margin: 0;
-  z-index: 4;
-  color: rgba(245, 248, 255, 0.95);
-  text-shadow:
-    0 1px 2px rgba(4, 8, 18, 0.78),
-    0 8px 20px rgba(4, 8, 18, 0.52);
-  pointer-events: none;
+  display: block;
+  margin-bottom: clamp(0.32rem, 0.72vw, 0.62rem);
+  color: rgba(0, 0, 0, 0.9);
   opacity: var(--grid-seq-kicker);
   transform: translate3d(0, calc((1 - var(--grid-seq-kicker)) * 12px), 0);
   transition: opacity 240ms linear, transform 240ms linear;
 }
 
 .gridSequenceMedia {
-  --grid-card-start-height: calc(100vh - var(--tech-header-height));
-  --grid-card-end-height: calc(100vh - var(--tech-header-height));
-  width: calc(100% + ((var(--tech-sidebar-width) + (var(--tech-content-gutter) * 2)) * var(--grid-seq-full)));
+  --grid-seq-bleed-inset: clamp(12px, 1.05vw, 16px);
+  --grid-card-start-height: min(70vh, 1000px);
+  --grid-card-end-height: calc(100vh - var(--tech-header-height) - var(--grid-seq-bleed-inset));
+  width: calc(
+    100% + (((var(--tech-sidebar-width) + (var(--tech-content-gutter) * 2)) - (var(--grid-seq-bleed-inset) * 2)) * var(--grid-seq-full))
+  );
   height: calc(
     var(--grid-card-start-height) + ((var(--grid-card-end-height) - var(--grid-card-start-height)) * var(--grid-seq-full))
   );
   margin-top: 0;
-  border-radius: calc(12px * (1 - var(--grid-seq-full)));
-  border-color: rgba(10, 22, 40, calc(0.18 - (0.14 * var(--grid-seq-full))));
+  border-radius: calc(12px - (4px * var(--grid-seq-full)));
+  border-color: rgba(255, 255, 255, 0.86);
   transform: translate3d(
-      calc((-1 * (var(--tech-sidebar-width) + var(--tech-content-gutter))) * var(--grid-seq-full)),
+      calc((-1 * ((var(--tech-sidebar-width) + var(--tech-content-gutter)) - var(--grid-seq-bleed-inset))) * var(--grid-seq-full)),
       0,
       0
     )
-    scale(calc(1 + (0.024 * var(--grid-seq-full))));
+    scale(calc(1 + (0.006 * var(--grid-seq-full))));
   transform-origin: center top;
   will-change: transform, width, height, border-radius;
 }
@@ -785,7 +782,7 @@
 }
 
 .gridSequenceNo {
-  margin: 14px 0 0;
+  margin: 16px 0 0;
   font-size: clamp(1.38rem, 1.75vw, 1.95rem);
   color: rgba(0, 0, 0, 0.86);
   opacity: var(--grid-seq-no);
@@ -794,7 +791,7 @@
 }
 
 .gridSequenceHint {
-  margin-top: 10px;
+  margin-top: 2px;
   opacity: var(--grid-seq-hint);
   transform: translate3d(0, calc((1 - var(--grid-seq-hint)) * 16px), 0);
   will-change: opacity, transform;

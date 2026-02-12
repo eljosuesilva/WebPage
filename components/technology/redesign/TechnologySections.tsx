@@ -95,7 +95,7 @@ function DynamicPins({ right = false }: { right?: boolean }) {
 export function TechnologySections() {
   return (
     <>
-      <Slide id="index">
+      <Slide id="index" className={styles.dotGrid}>
         <div className={styles.slideFrame}>
           <div className={styles.indexSlide}>
             <RevealOnView className={styles.indexCopy}>

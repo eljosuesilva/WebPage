@@ -8,7 +8,7 @@ import { VantorScrollFeel } from "./redesign/VantorScrollFeel";
 
 export function TechnologyPage() {
   return (
-    <main className={`${styles.page} ${styles.dotGrid}`}>
+    <main className={styles.page}>
       <Navbar />
       <VantorScrollFeel />
 

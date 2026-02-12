@@ -34,7 +34,7 @@ export function GridScrollSequence() {
       const zoomOut = clamp01((p - 0.56) / 0.28);
       const fullStrength = p < 0.56 ? zoomIn : 1 - zoomOut;
 
-      const shibuyaIn = clamp01((p - 0.3) / 0.12);
+      const shibuyaIn = clamp01((p + 0.3) / 0.12);
       const shibuyaOut = clamp01((p - 0.56) / 0.12);
       const shibuyaOpacity = clamp01(shibuyaIn * (1 - shibuyaOut));
       const worldOpacity = clamp01((p - 0.7) / 0.16);
@@ -75,9 +75,9 @@ export function GridScrollSequence() {
     <section id="grid-intro" ref={sequenceSectionRef} className={[styles.section, styles.gridSequenceSection].join(" ")}>
       <div className={[styles.slideFrame, styles.gridSequenceSticky].join(" ")}>
         <div className={styles.gridSequenceCanvas}>
-          <div className={[styles.gridArticleCard, styles.gridSequenceMedia].join(" ")}>
-            <p className={[styles.kicker, styles.gridSequenceKicker].join(" ")}>The Grid</p>
+          <p className={[styles.kicker, styles.gridSequenceKicker].join(" ")}>The Grid</p>
 
+          <div className={[styles.gridArticleCard, styles.gridSequenceMedia].join(" ")}>
             <Image
               src="/tokyo.png"
               alt="Shibuya crossing in Tokyo"
