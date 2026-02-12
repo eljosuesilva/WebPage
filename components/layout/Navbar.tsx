@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -61,6 +61,9 @@ const ScrambleText = ({
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isManuallyToggled, setIsManuallyToggled] = useState(false);
+    const navRef = useRef<HTMLElement>(null);
+    const lastMouseY = useRef(0);
 
     const menuItems = [
         { label: "Our Mission", href: "/our-mission" },
@@ -69,8 +72,52 @@ export const Navbar = () => {
         { label: "Technology", href: "/technology" },
     ];
 
+    // Handle mouse enter on nav - open menu
+    const handleMouseEnter = () => {
+        if (!isManuallyToggled) {
+            setIsMenuOpen(true);
+        }
+    };
+
+    // Handle mouse leave - only close if exiting from bottom/sides, not from top
+    const handleMouseLeave = (e: React.MouseEvent) => {
+        // If manually toggled, don't auto-close
+        if (isManuallyToggled) return;
+
+        const navBounds = navRef.current?.getBoundingClientRect();
+        if (!navBounds) return;
+
+        // If mouse is leaving from the top (y < navBounds.top), keep menu open
+        // This happens when user moves cursor to browser tab area
+        if (e.clientY <= navBounds.top) {
+            return; // Keep menu open
+        }
+
+        // Otherwise, close the menu (exiting from bottom or sides)
+        setIsMenuOpen(false);
+    };
+
+    // Handle hamburger click - toggle manually
+    const handleHamburgerClick = () => {
+        setIsManuallyToggled(true);
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    // Reset manual toggle when mouse enters again
+    const handleNavMouseEnter = () => {
+        if (isManuallyToggled && !isMenuOpen) {
+            setIsManuallyToggled(false);
+        }
+        handleMouseEnter();
+    };
+
     return (
-        <nav className="header-font fixed top-0 left-0 right-0 z-50 border-b border-[#0a1628]/12 bg-[#FFFFFF]">
+        <nav 
+            ref={navRef}
+            className="header-font fixed top-0 left-0 right-0 z-50 border-b border-[#0a1628]/12 bg-[#FFFFFF]"
+            onMouseEnter={handleNavMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
             <div className="relative z-50 mx-auto w-full max-w-[980px] px-5 lg:px-8">
                 <div className="flex h-[76px] items-center justify-between">
                     {/* Logo */}
@@ -123,7 +170,7 @@ export const Navbar = () => {
                                 Start Now
                             </Link>
                             <button
-                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                onClick={handleHamburgerClick}
                                 className="flex h-[44px] w-[44px] items-center justify-center border border-[#0a1628]/85 transition-colors hover:bg-gray-50"
                                 aria-label="Toggle menu"
                             >
