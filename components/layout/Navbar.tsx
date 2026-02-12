@@ -70,11 +70,7 @@ export const Navbar = () => {
     ];
 
     return (
-        <nav
-            className="header-font fixed top-0 left-0 right-0 z-50 border-b border-[#0a1628]/12 bg-[#FFFFFF]"
-            onMouseEnter={() => setIsMenuOpen(true)}
-            onMouseLeave={() => setIsMenuOpen(false)}
-        >
+        <nav className="header-font fixed top-0 left-0 right-0 z-50 border-b border-[#0a1628]/12 bg-[#FFFFFF]">
             <div className="relative z-50 mx-auto w-full max-w-[980px] px-5 lg:px-8">
                 <div className="flex h-[76px] items-center justify-between">
                     {/* Logo */}
@@ -120,10 +116,17 @@ export const Navbar = () => {
                         </div>
 
                         <div className="flex items-center gap-8">
-                            <button className="h-[44px] min-w-[166px] border border-[#0A1344]/85 bg-white px-8 text-[18px] font-semibold text-[#0A1344] transition-colors hover:bg-gray-50">
+                            <Link
+                                href="/maps-gpt"
+                                className="h-[44px] min-w-[166px] border border-[#0A1344]/85 bg-white px-8 text-[18px] font-semibold text-[#0A1344] transition-colors hover:bg-gray-50 flex items-center justify-center"
+                            >
                                 Start Now
-                            </button>
-                            <button className="flex h-[44px] w-[44px] items-center justify-center border border-[#0a1628]/85 transition-colors hover:bg-gray-50">
+                            </Link>
+                            <button
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className="flex h-[44px] w-[44px] items-center justify-center border border-[#0a1628]/85 transition-colors hover:bg-gray-50"
+                                aria-label="Toggle menu"
+                            >
                                 <svg
                                     width="26"
                                     height="26"
@@ -163,7 +166,7 @@ export const Navbar = () => {
             <div
                 className={`absolute top-full left-0 right-0 overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                     isMenuOpen
-                        ? "max-h-[600px] opacity-100 border-b border-gray-100 bg-white shadow-2xl"
+                        ? "max-h-[600px] opacity-100 border-b border-gray-100 bg-white"
                         : "max-h-0 opacity-0 pointer-events-none"
                 }`}
             >
@@ -208,7 +211,9 @@ export const Navbar = () => {
                                         <ScrambleText text="SOCIAL" isActive={isMenuOpen} delay={550} />
                                     </h4>
                                     <a
-                                        href="#"
+                                        href="https://www.linkedin.com/company/columbusearth/about/?viewAsMember=true"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="text-gray-900 hover:text-primary font-medium block transition-colors"
                                     >
                                         LinkedIn
