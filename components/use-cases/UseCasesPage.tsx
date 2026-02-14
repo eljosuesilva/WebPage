@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
@@ -40,16 +43,91 @@ const SITE_SELECTION_CUSTOMERS = [
   "Wholesale brokers",
 ];
 
-const APPLICATION_AREAS = [
-  { id: "01", title: "Disaster response", expanded: false },
-  { id: "02", title: "Environmental and Safety Mitigation and Predictive warning", expanded: false },
-  { id: "03", title: "City Security", expanded: false },
-  { id: "04", title: "Retail Analytics", expanded: true },
-  { id: "05", title: "Academic Research", expanded: false },
-  { id: "06", title: "", expanded: false },
+type ApplicationArea = {
+  id: string;
+  title: string;
+  summary: string;
+  highlights: string[];
+  outputs: string[];
+};
+
+const APPLICATION_AREAS: ApplicationArea[] = [
+  {
+    id: "01",
+    title: "Disaster response",
+    summary: "Rapid situational awareness for earthquakes, floods and wildfires using multi-source layers.",
+    highlights: [
+      "Damage heatmaps in under 30 minutes.",
+      "Road accessibility scoring for rescue corridors.",
+      "Prioritization of hospitals and shelters by impact.",
+    ],
+    outputs: ["Live impact map", "Rescue routing", "Resource allocation"],
+  },
+  {
+    id: "02",
+    title: "Environmental and Safety Mitigation and Predictive warning",
+    summary: "Predictive risk monitoring that combines terrain, weather and human activity to detect hazards early.",
+    highlights: [
+      "Slope-instability and landslide likelihood alerts.",
+      "Air and water anomaly detection with historical baselines.",
+      "Proactive mitigation plans by municipality.",
+    ],
+    outputs: ["Risk index", "Early warning feed", "Mitigation playbook"],
+  },
+  {
+    id: "03",
+    title: "City Security",
+    summary: "Geo-intelligence layer for urban command centers to coordinate prevention and response.",
+    highlights: [
+      "Dynamic hotspot detection by block and hour.",
+      "Pattern correlation across incidents and mobility flows.",
+      "Patrol optimization with response-time simulation.",
+    ],
+    outputs: ["Hotspot dashboard", "Patrol planner", "Incident replay"],
+  },
+  {
+    id: "04",
+    title: "Retail Analytics",
+    summary: "Trade-area understanding from footfall, sentiment and competitor behavior to maximize store performance.",
+    highlights: [
+      "Catchment-zone comparison by micro-neighborhood.",
+      "Demand forecasting by seasonality and events.",
+      "Competitor pressure tracking for pricing strategy.",
+    ],
+    outputs: ["Store ranking", "Demand forecast", "Competitor pulse"],
+  },
+  {
+    id: "05",
+    title: "Academic Research",
+    summary: "Structured geospatial pipelines for researchers needing reproducible analysis at city and regional scale.",
+    highlights: [
+      "Layer versioning with full provenance metadata.",
+      "Cross-domain datasets fused into one queryable model.",
+      "Export-ready assets for papers and peer review.",
+    ],
+    outputs: ["Research workspace", "Reproducible exports", "Citation-ready layers"],
+  },
+  {
+    id: "06",
+    title: "Infrastructure Resilience",
+    summary: "Stress-test roads, utilities and critical assets under climate, demand and disruption scenarios.",
+    highlights: [
+      "Network vulnerability analysis under extreme events.",
+      "Maintenance prioritization by exposure and criticality.",
+      "Investment planning with scenario comparison.",
+    ],
+    outputs: ["Asset risk matrix", "Failure simulation", "Capex roadmap"],
+  },
 ];
 
 export function UseCasesPage() {
+  const [openAreas, setOpenAreas] = useState<string[]>(["04"]);
+  const [isChatPanelOpen, setIsChatPanelOpen] = useState(false);
+
+  const toggleArea = (id: string) => {
+    setOpenAreas((previous) => (previous.includes(id) ? previous.filter((item) => item !== id) : [...previous, id]));
+  };
+
   return (
     <main className={styles.page}>
       <Navbar />
@@ -156,23 +234,89 @@ export function UseCasesPage() {
                 <br />
                 people in the industry. Talk to us.
               </p>
-              <button type="button" className={styles.chatButton}>
+              <button
+                type="button"
+                className={`${styles.chatButton} ${isChatPanelOpen ? styles.chatButtonOpen : ""}`}
+                onClick={() => setIsChatPanelOpen((previous) => !previous)}
+                aria-expanded={isChatPanelOpen}
+                aria-controls="use-cases-chat-panel"
+              >
                 Chat with us
               </button>
+              <div
+                id="use-cases-chat-panel"
+                className={`${styles.chatPanel} ${isChatPanelOpen ? styles.chatPanelOpen : ""}`}
+                aria-hidden={!isChatPanelOpen}
+              >
+                <div className={styles.chatPanelInner}>
+                  <p className={styles.chatPanelTitle}>Let&apos;s design your geospatial workflow.</p>
+                  <p className={styles.chatPanelCopy}>
+                    Tell us your sector, geography and business goal. Our team will answer with a tailored proposal.
+                  </p>
+                  <div className={styles.chatPanelTags}>
+                    <span>Site selection</span>
+                    <span>Risk modeling</span>
+                    <span>Market intelligence</span>
+                  </div>
+                  <a className={styles.chatPanelLink} href="mailto:contact@columbus.earth">
+                    contact@columbus.earth
+                  </a>
+                </div>
+              </div>
             </aside>
 
             <div className={styles.applicationListWrap}>
               <p className={styles.applicationLabel}>APPLICATION AREAS</p>
               <ol className={styles.applicationList}>
                 {APPLICATION_AREAS.map((area) => (
-                  <li key={area.id} className={styles.applicationRow}>
-                    <span className={styles.applicationId}>{area.id}.</span>
-                    <span className={styles.applicationTitle}>{area.title || "\u00a0"}</span>
-                    {area.title ? (
-                      <span className={styles.applicationIcon} aria-hidden="true">
-                        {area.expanded ? "−" : "+"}
+                  <li
+                    key={area.id}
+                    className={`${styles.applicationItem} ${
+                      openAreas.includes(area.id) ? styles.applicationItemOpen : ""
+                    } ${area.id === "05" ? styles.applicationBreak : ""}`}
+                  >
+                    <button
+                      type="button"
+                      className={styles.applicationToggle}
+                      onClick={() => toggleArea(area.id)}
+                      aria-expanded={openAreas.includes(area.id)}
+                    >
+                      <span className={styles.applicationRow}>
+                        <span className={styles.applicationId}>{area.id}.</span>
+                        <span className={styles.applicationTitle}>{area.title}</span>
+                        <span
+                          className={`${styles.applicationIcon} ${
+                            openAreas.includes(area.id) ? styles.applicationIconOpen : ""
+                          }`}
+                          aria-hidden="true"
+                        >
+                          <span className={styles.applicationIconLine} />
+                          <span className={`${styles.applicationIconLine} ${styles.applicationIconLineVertical}`} />
+                        </span>
                       </span>
-                    ) : null}
+                    </button>
+                    <div className={styles.applicationPanel}>
+                      <div className={styles.applicationPanelInner}>
+                        <div className={styles.applicationPanelContent}>
+                          <p className={styles.applicationSummary}>{area.summary}</p>
+                          <div className={styles.applicationDetails}>
+                            <ul className={styles.applicationHighlights}>
+                              {area.highlights.map((highlight) => (
+                                <li key={highlight}>{highlight}</li>
+                              ))}
+                            </ul>
+                            <div className={styles.applicationOutputs}>
+                              <p>Typical outputs</p>
+                              <div className={styles.applicationOutputTags}>
+                                {area.outputs.map((output) => (
+                                  <span key={output}>{output}</span>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ol>

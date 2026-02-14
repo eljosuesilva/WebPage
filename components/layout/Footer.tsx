@@ -1,28 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import styles from "./footer.module.css";
 
 interface FooterProps {
   variant?: "default" | "compact";
-}
-
-function GlobeMark({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1"
-        fill="currentColor"
-      />
-    </svg>
-  );
 }
 
 function MailIcon({ className = "" }: { className?: string }) {
@@ -53,21 +35,14 @@ function LinkedInIcon({ className = "" }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <path d="M6.5 10V18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M6.5 7.25V7.3" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+      <path d="M8.2 10.06H5.85V17.5H8.2V10.06Z" fill="currentColor" />
       <path
-        d="M10.5 18V13.6C10.5 12.2 11.4 11.2 12.8 11.2C14.2 11.2 15 12.15 15 13.75V18"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M7.02 9.12C7.76 9.12 8.35 8.52 8.35 7.79C8.35 7.05 7.76 6.46 7.02 6.46C6.29 6.46 5.69 7.05 5.69 7.79C5.69 8.52 6.29 9.12 7.02 9.12Z"
+        fill="currentColor"
       />
       <path
-        d="M18 18V13.85C18 12.1 17.05 10.85 15.2 10.85C13.8 10.85 12.95 11.55 12.6 12.25"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M18.35 13.23C18.35 10.89 17.08 9.42 15.16 9.42C13.74 9.42 13.07 10.18 12.74 10.8V10.06H10.53V17.5H12.88V13.82C12.88 12.86 13.38 12.16 14.3 12.16C15.22 12.16 15.67 12.83 15.67 13.82V17.5H18.02V13.28C18.02 13.26 18.35 13.25 18.35 13.23Z"
+        fill="currentColor"
       />
     </svg>
   );
@@ -89,7 +64,9 @@ export const Footer = ({ variant = "default" }: FooterProps) => {
           <div className={styles.columns}>
             <div className={styles.brandColumn}>
               <div className={styles.brandRow}>
-                <GlobeMark className={styles.brandIcon} />
+                <span className={styles.brandLogoWrap} aria-hidden="true">
+                  <Image src="/logobueno.png" alt="" fill className={styles.brandLogoImage} />
+                </span>
                 <p className={styles.brandName}>Columbus Earth</p>
               </div>
               <p className={styles.brandDescription}>

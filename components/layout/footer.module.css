@@ -7,7 +7,7 @@
 
 .recruitBand {
   position: relative;
-  min-height: clamp(300px, 26vw, 390px);
+  min-height: clamp(312px, 28vw, 420px);
   overflow: hidden;
   background: #f1f1f1;
 }
@@ -15,9 +15,9 @@
 .recruitArc {
   position: absolute;
   left: 50%;
-  bottom: -258px;
-  width: max(1520px, 150vw);
-  height: 900px;
+  bottom: -252px;
+  width: max(1320px, 130vw);
+  height: 560px;
   transform: translateX(-50%);
   border-radius: 50%;
   border-top: 3px solid rgba(214, 226, 246, 0.76);
@@ -45,7 +45,7 @@
   z-index: 2;
   margin: 0 auto;
   max-width: 1320px;
-  padding-top: clamp(74px, 6.1vw, 94px);
+  padding-top: clamp(52px, 5.1vw, 78px);
   text-align: center;
 }
 
@@ -117,11 +117,24 @@
   flex-shrink: 0;
 }
 
+.brandLogoWrap {
+  position: relative;
+  flex-shrink: 0;
+  height: clamp(52px, 4.1vw, 70px);
+  width: clamp(52px, 4.1vw, 70px);
+}
+
+.brandLogoImage {
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
 .brandName {
   margin: 0;
   color: #f6f9ff;
   font-size: clamp(44px, 4.1vw, 74px);
   font-weight: 600;
+  font-family: "SN Pro", "Varela Round", sans-serif;
   letter-spacing: -0.04em;
   line-height: 0.96;
   white-space: nowrap;
@@ -144,12 +157,14 @@
 
 .socials a {
   display: inline-flex;
-  height: 40px;
-  width: 40px;
+  height: 42px;
+  width: 42px;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 10px;
   color: #f5f8ff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.03);
   transition: background-color 180ms ease, transform 180ms ease;
 }
 
@@ -206,13 +221,13 @@
 
 @media (max-width: 920px) {
   .recruitBand {
-    min-height: 286px;
+    min-height: 300px;
   }
 
   .recruitArc {
-    bottom: -278px;
-    width: max(1100px, 185vw);
-    height: 900px;
+    bottom: -230px;
+    width: max(980px, 168vw);
+    height: 500px;
   }
 
   .columns {
@@ -227,11 +242,13 @@
 
 @media (max-width: 640px) {
   .recruitBand {
-    min-height: 268px;
+    min-height: 292px;
   }
 
   .recruitArc {
-    bottom: -294px;
+    bottom: -194px;
+    width: 192vw;
+    height: 450px;
   }
 
   .inner {
