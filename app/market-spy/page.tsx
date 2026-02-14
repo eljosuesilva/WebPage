@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import { MapBackground, MapMarker } from "@/components/map/MapBackground";
 
 type Sector = "FASHION" | "RESTAURANTS" | "CAFES";
@@ -232,7 +233,6 @@ export default function MarketSpyPage() {
     const [activeSector, setActiveSector] = useState<Sector>("FASHION");
     const [activeFilter, setActiveFilter] = useState<string | null>(null);
     const [selectedMarker, setSelectedMarker] = useState<MapMarker | null>(null);
-    const [chatQuery, setChatQuery] = useState("");
 
     const activeData = activeFilter ? getMockData(activeFilter, selectedMarker?.label || null, activeSector) : null;
     const displayedMarkers = SECTOR_MARKERS[activeSector];
@@ -244,7 +244,7 @@ export default function MarketSpyPage() {
     };
 
     return (
-        <main className="h-screen w-full flex flex-col overflow-hidden bg-white">
+        <main className="min-h-screen w-full flex flex-col bg-white">
             <Navbar />
 
             {/* Main Dashboard Content - Starts below navbar */}
@@ -292,7 +292,7 @@ export default function MarketSpyPage() {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <button
-                                        onClick={() => setChatQuery(`Tell me interesting facts about ${selectedMarker.label}`)}
+                                        type="button"
                                         className="bg-white px-3 py-1 rounded-full text-xs font-bold text-blue-600 shadow-sm border border-blue-100 hover:bg-blue-50 transition-colors flex items-center gap-1"
                                     >
                                         <span>✨</span> Ask AI
@@ -385,6 +385,7 @@ export default function MarketSpyPage() {
                 </div>
 
             </div>
+            <Footer />
         </main>
     );
 }

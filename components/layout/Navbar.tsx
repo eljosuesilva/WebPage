@@ -63,12 +63,12 @@ export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isManuallyToggled, setIsManuallyToggled] = useState(false);
     const navRef = useRef<HTMLElement>(null);
-    const lastMouseY = useRef(0);
 
     const menuItems = [
         { label: "Our Mission", href: "/our-mission" },
         { label: "Columbus Market Spy", href: "/market-spy" },
         { label: "MapsGPT", href: "/maps-gpt" },
+        { label: "Use Cases", href: "/use-cases" },
         { label: "Technology", href: "/technology" },
     ];
 
@@ -159,7 +159,7 @@ export const Navbar = () => {
                                 Product
                             </Link>
                             <Link
-                                href="#"
+                                href="/use-cases"
                                 className="text-[18px] font-normal text-[#0a1628] transition-colors hover:text-gray-600"
                             >
                                 Use Cases

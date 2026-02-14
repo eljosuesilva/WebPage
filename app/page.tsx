@@ -5,8 +5,7 @@ import { DataFusion } from "@/components/home/DataFusion";
 import { WhyColumbus } from "@/components/home/WhyColumbus";
 import { Products } from "@/components/home/Products";
 import { Footer } from "@/components/layout/Footer";
-import { FeatureHighlight } from "@/components/home/FeatureHighlight"; // New Import
-
+import { FeatureHighlight } from "@/components/home/FeatureHighlight";
 
 import { GridBackground } from "@/components/home/GridBackground";
 
@@ -18,20 +17,20 @@ export default function Home() {
         <Hero />
       </div>
       <GridBackground />
-      <div className="mb-0">
+      <div className="-mt-6 mb-0 md:-mt-8">
         <WhyColumbus />
       </div>
 
       <FeatureHighlight />
 
-      <div className="bg-white/30 backdrop-blur-sm [mask-image:linear-gradient(to_bottom,transparent,black_100px_100%)] pt-32">
-        <div id="services" className="mb-32">
+      <div className="pt-24 md:pt-28">
+        <div id="services" className="mb-24 md:mb-28">
           <Services />
         </div>
-        <div className="mb-32">
+        <div className="mb-24 md:mb-28">
           <DataFusion />
         </div>
-        <div id="products" className="mb-32">
+        <div id="products">
           <Products />
         </div>
       </div>

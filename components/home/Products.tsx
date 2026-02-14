@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export const Products = () => {
     return (
-        <section className="py-32 pointer-events-auto" id="products">
+        <section className="relative pt-32 pb-12 md:pb-16 pointer-events-auto" id="products">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <div className="text-center mb-20">
@@ -130,8 +130,6 @@ export const Products = () => {
 
                 </div>
             </div>
-            {/* Bottom Blur Gradient */}
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#FAFAF9] to-transparent z-1 pointer-events-none"></div>
         </section>
     );
 };

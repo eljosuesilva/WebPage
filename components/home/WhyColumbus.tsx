@@ -51,7 +51,7 @@ export const WhyColumbus = () => {
             className="w-full px-4 py-4 sm:px-6 sm:py-6"
             id="why-columbus"
         >
-            <div className="relative w-full min-h-screen flex flex-col overflow-hidden rounded-sm">
+            <div className="relative w-full h-auto min-h-[750px] lg:h-[750px] flex flex-col overflow-hidden rounded-sm">
                 {/* Background Image */}
                 <div className="absolute inset-0 w-full h-full z-0">
                     <Image
@@ -76,14 +76,11 @@ export const WhyColumbus = () => {
                     ></div>
                 </div>
 
-                {/* Top Blur Gradient */}
-                <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-[#0a1628] to-transparent z-10 pointer-events-none"></div>
-
                 {/* Content */}
-                <div className="relative z-10 w-full flex-1 flex flex-col justify-between px-6 sm:px-10 lg:px-16 py-12 md:py-16">
+                <div className="relative z-10 w-full flex-1 flex flex-col justify-between px-6 sm:px-10 lg:px-16 py-5 md:py-6">
                     {/* Title */}
-                    <div className="max-w-4xl mb-12 md:mb-16">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white leading-tight tracking-tight">
+                    <div className="max-w-4xl mt-5 md:mt-7 mb-5 md:mb-6">
+                        <h2 className="text-2xl sm:text-3xl md:text-[44px] font-medium text-white leading-tight tracking-tight">
                             The Columbus Aggregated Geospatial Data system
                             <br />
                             fuses versatile data sources into one coherent picture.
@@ -91,7 +88,7 @@ export const WhyColumbus = () => {
                     </div>
 
                     {/* Pipeline Columns */}
-                    <div className="flex-1 flex flex-col justify-end">
+                    <div className="flex-1 flex flex-col justify-center">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
                             {pipelineColumns.map((col, i) => (
                                 <div
@@ -99,11 +96,11 @@ export const WhyColumbus = () => {
                                     className={`flex flex-col ${i < pipelineColumns.length - 1
                                         ? "lg:border-r lg:border-white/20"
                                         : ""
-                                        } px-4 py-4`}
+                                        } px-4 py-2`}
                                 >
                                     {/* Column Title */}
                                     <h3
-                                        className={`text-lg md:text-xl font-semibold mb-4 ${col.highlight
+                                        className={`text-lg md:text-xl font-semibold mb-3 ${col.highlight
                                             ? "text-[#00ff88]"
                                             : "text-white"
                                             }`}
@@ -112,11 +109,11 @@ export const WhyColumbus = () => {
                                     </h3>
 
                                     {/* Images Grid */}
-                                    <div className="mb-4">
+                                    <div className="mb-3">
                                         {col.images.length > 0 ? (
                                             col.title === "Generative Layers" ? (
                                                 /* Single large image for Generative Layers */
-                                                <div className="relative w-full aspect-square max-w-[200px] overflow-hidden shadow-lg shadow-cyan-500/20">
+                                                <div className="relative w-full aspect-square max-w-[178px] overflow-hidden shadow-lg shadow-cyan-500/20">
                                                     <Image
                                                         src={col.images[0].src}
                                                         alt={col.images[0].alt}
@@ -127,7 +124,7 @@ export const WhyColumbus = () => {
                                                 </div>
                                             ) : (
                                                 /* 2x2 grid for other columns */
-                                                <div className="grid grid-cols-2 gap-1 max-w-[260px]">
+                                                <div className="grid grid-cols-2 gap-1 max-w-[248px]">
                                                     {col.images.map((img, j) => (
                                                         <div
                                                             key={j}
@@ -160,14 +157,14 @@ export const WhyColumbus = () => {
                     </div>
 
                     {/* Bottom Tagline Bar */}
-                    <div className="flex items-center justify-between mt-8 pt-6 border-t border-white/10">
-                        <p className="text-xl md:text-2xl text-white font-normal">
+                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
+                        <p className="text-lg md:text-2xl text-white font-normal">
                             We turn earth into an intelligence hub for your research
                             and decision making.
                         </p>
                         <a
                             href="/technology"
-                            className="text-white font-medium flex items-center gap-2 hover:opacity-80 transition-opacity whitespace-nowrap ml-8"
+                            className="text-base text-white font-medium flex items-center gap-2 hover:opacity-80 transition-opacity whitespace-nowrap ml-8"
                         >
                             Learn more
                             <svg
@@ -189,8 +186,6 @@ export const WhyColumbus = () => {
                     </div>
                 </div>
 
-                {/* Bottom Blur Gradient */}
-                <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#FAFAF9] to-transparent z-10 pointer-events-none"></div>
             </div>
         </section>
     );

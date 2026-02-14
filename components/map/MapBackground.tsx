@@ -39,6 +39,7 @@ export const MapBackground: React.FC<MapBackgroundProps> = ({
     const mapRef = useRef<mapboxgl.Map | null>(null);
     const activeChapterRef = useRef<ChapterId>(initialChapter);
     const markersRef = useRef<mapboxgl.Marker[]>([]);
+    const hasMapToken = MAPBOX_TOKEN.trim().length > 0;
 
     const [mapLoaded, setMapLoaded] = React.useState(false);
 
@@ -95,38 +96,44 @@ export const MapBackground: React.FC<MapBackgroundProps> = ({
 
             markersRef.current.push(newMarker);
         });
-    }, [markers, interactive, mapLoaded]); // Re-run when map is ready or markers change
+    }, [markers, interactive, mapLoaded, onMarkerClick]); // Re-run when map is ready or markers change
 
     useEffect(() => {
-        if (!mapContainerRef.current) return;
+        if (!mapContainerRef.current || !hasMapToken) return;
 
-        const map = new mapboxgl.Map({
-            container: mapContainerRef.current,
-            style: mapStyle,
-            center: CHAPTERS[initialChapter].center,
-            zoom: CHAPTERS[initialChapter].zoom,
-            pitch: CHAPTERS[initialChapter].pitch,
-            bearing: CHAPTERS[initialChapter].bearing,
-            interactive: interactive,
-            antialias: true
-        });
+        let map: mapboxgl.Map | null = null;
+        try {
+            map = new mapboxgl.Map({
+                container: mapContainerRef.current,
+                style: mapStyle,
+                center: CHAPTERS[initialChapter].center,
+                zoom: CHAPTERS[initialChapter].zoom,
+                pitch: CHAPTERS[initialChapter].pitch,
+                bearing: CHAPTERS[initialChapter].bearing,
+                interactive: interactive,
+                antialias: true
+            });
+        } catch (error) {
+            console.error("Failed to initialize WebGL", error);
+            return;
+        }
 
         mapRef.current = map;
 
+        const onMapError = (event: mapboxgl.ErrorEvent) => {
+            console.error("Mapbox runtime error", event.error);
+        };
+
+        map.on("error", onMapError);
+
         map.on('style.load', () => {
-            map.setConfigProperty('basemap', 'lightPreset', 'day');
-            map.setProjection('globe');
+            try {
+                map.setConfigProperty('basemap', 'lightPreset', 'day');
+                map.setProjection('globe');
+            } catch (error) {
+                console.error("Failed to configure map style", error);
+            }
             setMapLoaded(true);
-            // Trigger marker effect manually once map is loaded if needed, 
-            // though the dependency array on the other effect should handle it 
-            // once mapRef is executing. 
-            // Actually, we need to force a re-render or check if the other effect 
-            // runs after mapRef is assigned. React refs don't trigger re-renders.
-            // We can just rely on the markers prop or set a loaded state.
-            // For now, let's just trigger the marker update by passing 'map' to a state if we wanted to be 100% pure,
-            // but in this imperative integration, simply ensuring the other effect runs is key.
-            // Since the other effect depends on [markers], and markers likely won't change *exactly* when map loads,
-            // we might miss the initial paint.
         });
 
         const isElementOnScreen = (id: ChapterId) => {
@@ -157,10 +164,22 @@ export const MapBackground: React.FC<MapBackgroundProps> = ({
 
         return () => {
             window.removeEventListener('scroll', onScroll);
+            map.off("error", onMapError);
             map.remove();
+            mapRef.current = null;
+            markersRef.current = [];
+            setMapLoaded(false);
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [hasMapToken, initialChapter, interactive, mapStyle]);
+
+    if (!hasMapToken) {
+        return (
+            <div
+                className={`${className} bg-[radial-gradient(circle_at_28%_18%,#b7d4f2_0%,#d2e2f3_30%,#e9edf2_70%,#f3f4f6_100%)]`}
+                aria-hidden="true"
+            />
+        );
+    }
 
     return (
         <div className={`${className} bg-gray-200`}>
